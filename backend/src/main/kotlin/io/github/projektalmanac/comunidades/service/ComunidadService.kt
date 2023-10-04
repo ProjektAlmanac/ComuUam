@@ -53,6 +53,7 @@ class ComunidadService(private val comunidadRepository: ComunidadRepository, pri
     companion object {
         private val LOGGER = LoggerFactory.getLogger(ComunidadService::class.java)
     }
+
     fun crearComunidad(creacionComunidadDto: CreacionComunidadDto?): ComunidadCreadaDto {
         //val user: User = userRepository.findById(id)
         val comunidad: Comunidad? = creacionComunidadDto?.let { ComunidadMapper.INSTANCE.toComunidad(it) }
