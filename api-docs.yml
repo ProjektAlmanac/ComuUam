@@ -23,7 +23,7 @@ paths:
   '/api/comunidades/{idComunidad}':
     parameters:
       - schema:
-          type: string
+          type: integer
         name: idComunidad
         in: path
         required: true
@@ -318,3 +318,4 @@ components:
         - visibilidad
         - descripcion
         - categorias
+
