@@ -3,5 +3,6 @@
 	import '../app.scss';
 </script>
 
-<ToolBar />
-<slot />
+<ToolBar>
+	<slot />
+</ToolBar>
