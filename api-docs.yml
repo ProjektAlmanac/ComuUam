@@ -8,19 +8,19 @@ x-stoplight:
   id: 9fznkd587c7ta
 info:
   title: Comuam
-  version: "1.0"
+  version: '1.0'
   contact:
     name: Proyect Almanac
     email: miguel.gzm98@gmail.com
-    url: "https://ProjektAlmanac.github.io"
+    url: 'https://ProjektAlmanac.github.io'
   description: Correo de contacto del API
   license:
     name: MIT
-    url: "https://proyektalmanac.github.io/license"
+    url: 'https://proyektalmanac.github.io/license'
 servers:
-  - url: "http://localhost:3000"
+  - url: 'http://localhost:3000'
 paths:
-  "/api/comunidades/{idComunidad}":
+  '/api/comunidades/{idComunidad}':
     parameters:
       - schema:
           type: integer
@@ -33,17 +33,17 @@ paths:
       tags:
         - comunidad
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Comunidad"
+                $ref: '#/components/schemas/Comunidad'
       operationId: getInfoComunidad
       x-stoplight:
         id: am4h5fmi2l3k5
       description: Obtiene la información de la comunidad
-  "/api/comunidades/{idComunidad}/miembros":
+  '/api/comunidades/{idComunidad}/miembros':
     parameters:
       - schema:
           type: string
@@ -55,7 +55,7 @@ paths:
       summary: Agregar miembro a comunidad
       operationId: agregarMiembroComunidad
       responses:
-        "204":
+        '204':
           description: No Content
       x-stoplight:
         id: vakpw9yp15da6
@@ -66,25 +66,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/IdUsuario"
+              $ref: '#/components/schemas/IdUsuario'
   /api/usuarios:
     post:
       summary: Crear un nuevo usuario
       operationId: crearUsuario
       responses:
-        "201":
+        '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UsuarioCreado"
+                $ref: '#/components/schemas/UsuarioCreado'
       x-stoplight:
         id: uaxx0algp8zzd
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreacionUsuario"
+              $ref: '#/components/schemas/CreacionUsuario'
       tags:
         - usuarios
       description: Crea un nuevo usuario
@@ -93,12 +93,12 @@ paths:
     get:
       summary: Your GET endpoint
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ListaComunidades"
+                $ref: '#/components/schemas/ListaComunidades'
       operationId: getComunidades
       x-stoplight:
         id: b70fpvufymzr1
@@ -109,12 +109,12 @@ paths:
       summary: Crear una nueva comunidad
       operationId: crearComunidad
       responses:
-        "201":
+        '201':
           description: Created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ComunidadCreada"
+                $ref: '#/components/schemas/ComunidadCreada'
       x-stoplight:
         id: kv5w6d802jxcw
       description: Registra una nueva comunidad en el sistema
@@ -122,7 +122,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreacionComunidad"
+              $ref: '#/components/schemas/CreacionComunidad'
         description: Datos para la creación de una comunidad
       tags:
         - comunidad
@@ -132,12 +132,12 @@ paths:
       tags:
         - usuarios
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/IdUsuario"
+                $ref: '#/components/schemas/IdUsuario'
       operationId: getId
       x-stoplight:
         id: 9985n1ey6vdqv
@@ -162,7 +162,7 @@ components:
           nombre: Juan
           apellidos: Pérez
           correo: usuario@titlani.uam.mx
-          password: "12345"
+          password: '12345'
       description: Datos necesarios para crear un usuario
       properties:
         nombre:
@@ -184,7 +184,7 @@ components:
         Example 1:
           id: 1
           nombre: Juan
-          apellidos: "Pérez "
+          apellidos: 'Pérez '
           correo: usuario@titlani.uam.mx
       properties:
         id:
@@ -227,7 +227,7 @@ components:
         nombre:
           type: string
         creadoPor:
-          $ref: "#/components/schemas/CreadorComunidad"
+          $ref: '#/components/schemas/CreadorComunidad'
         descripcion:
           type: string
       required:
@@ -246,7 +246,11 @@ components:
               descripcion: Ven y aprende
       properties:
         comunidades:
-          $ref: "#/components/schemas/DetallesComunidad"
+          type: array
+          items:
+            $ref: '#/components/schemas/DetallesComunidad'
+            x-stoplight:
+              id: 2gjth8ufsdbvt
       required:
         - comunidades
     Comunidad:
@@ -288,7 +292,7 @@ components:
       description: Datos necesarios para crear una comunidad
       properties:
         visibilidad:
-          $ref: "#/components/schemas/Visibilidad"
+          $ref: '#/components/schemas/Visibilidad'
         descripcion:
           type: string
         categorias:
@@ -323,7 +327,7 @@ components:
         id:
           type: integer
         visibilidad:
-          $ref: "#/components/schemas/Visibilidad"
+          $ref: '#/components/schemas/Visibilidad'
         descripcion:
           type: string
         categorias:
