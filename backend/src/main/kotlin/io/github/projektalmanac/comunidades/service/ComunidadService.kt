@@ -1,5 +1,6 @@
 package io.github.projektalmanac.comunidades.service
 
+import io.github.projektalmanac.comunidades.controller.UsuariosController
 import io.github.projektalmanac.comunidades.entity.Comunidad
 import io.github.projektalmanac.comunidades.exception.CommunityNotFoundException
 import io.github.projektalmanac.comunidades.exception.UserNotFoundException
@@ -13,18 +14,20 @@ import io.github.projektalmanac.comunidades.mapper.ComunidadMapper
 import io.github.projektalmanac.comunidades.repository.ComunidadRepository
 import io.github.projektalmanac.comunidades.repository.UserRepository
 import org.slf4j.LoggerFactory
-import org.springframework.http.ResponseEntity
 
-import io.github.projektalmanac.comunidades.entity.User
 import io.github.projektalmanac.comunidades.generated.dto.ComunidadCreadaDto
 import io.github.projektalmanac.comunidades.generated.dto.CreacionComunidadDto
 
 import org.springframework.stereotype.Service
-import io.github.projektalmanac.comunidades.repository.*
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.Authentication
+import org.springframework.security.oauth2.jwt.Jwt
 
 @Service
-class ComunidadService(private val comunidadRepository: ComunidadRepository, private val userRepository: UserRepository) {
+class ComunidadService(
+    private val comunidadRepository: ComunidadRepository,
+    private val userRepository: UserRepository,
+    private val usuariosController: UsuariosController
+) {
 
     fun getInfoComunidad(idComunidad: Any): ComunidadDto {
         LOGGER.info(">> getInfoComunidad {}", idComunidad)
@@ -56,13 +59,16 @@ class ComunidadService(private val comunidadRepository: ComunidadRepository, pri
         private val LOGGER = LoggerFactory.getLogger(ComunidadService::class.java)
     }
 
-    fun crearComunidad(creacionComunidadDto: CreacionComunidadDto?): ComunidadCreadaDto {
-        //val user: User = userRepository.findById(id)
+    fun crearComunidad(creacionComunidadDto: CreacionComunidadDto?, authentication: Authentication): ComunidadCreadaDto {
+        val principal = authentication.principal
+        require(principal is Jwt)
+        val email = principal.claims["email"] as String
+        val usuario = userRepository.findByCorreo(email)
         val comunidad: Comunidad? = creacionComunidadDto?.let { ComunidadMapper.INSTANCE.toComunidad(it) }
         comunidad?.let { comunidadRepository?.save(it) }
-        //user.addBook(book)
-        //userRepository.save(user)
-        //book = bookRepository.findByIsbn(book.getIsbn())
+        comunidad?.let { usuario?.agregarComunidad(it) }
+        usuario?.let { userRepository?.save(it) }
+        //comunidad = comunidadRepository.findById(book.getIsbn())
         //return toLibroRegistradoDto(book)
         TODO("Not yet implemented")
     }

@@ -12,9 +12,19 @@ class User {
     val lastName: String? = null
     val correo: String? = null
 
-    @ManyToMany(mappedBy = "usuariosInscritos")
-    val comunidad: List<Comunidad> = ArrayList()
+
+    @ManyToMany(mappedBy = "usuarios")
+    val comunidad: MutableList<Comunidad> = ArrayList()
+
 
     @OneToMany
-    val dueno: List<Comunidad> = ArrayList()
+    val dueno: MutableList<Comunidad> = ArrayList()
+
+    fun agregarComunidad(comunidad2: Comunidad): Boolean {
+        return if (comunidad.add(comunidad2) && dueno.add(comunidad2)) {
+            true
+        } else {
+            false
+        }
+    }
 }

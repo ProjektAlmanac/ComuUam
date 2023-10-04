@@ -7,6 +7,7 @@ import io.github.projektalmanac.comunidades.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.RestController
 
 
@@ -19,7 +20,8 @@ class ComunidadController(private val comunidadService: ComunidadService,private
     }
 
     override fun crearComunidad(creacionComunidadDto: CreacionComunidadDto?): ResponseEntity<ComunidadCreadaDto> {
-        val result = comunidadService.crearComunidad(creacionComunidadDto)
+        val authentication = SecurityContextHolder.getContext().authentication
+        val result = comunidadService.crearComunidad(creacionComunidadDto, authentication)
         return ResponseEntity.status(HttpStatus.CREATED).body(result)
     }
 
