@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 
+import { currentUser } from '$lib/store';
 import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 export function inicializarFirebase() {
 	// TODO: Add SDKs for Firebase products that you want to use
@@ -27,5 +29,10 @@ export function inicializarFirebase() {
 
 	// Initialize Firebase
 
-	return initializeApp(firebaseConfig);
+	initializeApp(firebaseConfig);
+
+	const auth = getAuth();
+	auth.onAuthStateChanged((user) => {
+		currentUser.set(user);
+	});
 }
