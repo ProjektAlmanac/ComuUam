@@ -7,6 +7,7 @@ package io.github.projektalmanac.comunidades.generated.api
 
 import io.github.projektalmanac.comunidades.generated.dto.ComunidadDto
 import io.github.projektalmanac.comunidades.generated.dto.IdUsuarioDto
+import io.github.projektalmanac.comunidades.generated.dto.ListaComunidadesDto
 import io.swagger.v3.oas.annotations.*
 import io.swagger.v3.oas.annotations.enums.*
 import io.swagger.v3.oas.annotations.media.*
@@ -51,7 +52,22 @@ interface ComunidadApi {
             value = ["/api/comunidades/{idComunidad}/miembros"],
             consumes = ["application/json"]
     )
-    fun agregarMiembroComunidad(@Parameter(description = "", required = true) @PathVariable("idComunidad") idComunidad: kotlin.Any,@Parameter(description = "") @Valid @RequestBody(required = false) idUsuarioDto: IdUsuarioDto?): ResponseEntity<Unit>
+    fun agregarMiembroComunidad(@Parameter(description = "ID de la comunidad", required = true) @PathVariable("idComunidad") idComunidad: kotlin.Any,@Parameter(description = "") @Valid @RequestBody(required = false) idUsuarioDto: IdUsuarioDto?): ResponseEntity<Unit>
+
+    @Operation(
+        summary = "Your GET endpoint",
+        operationId = "getComunidades",
+        description = """Recupera una lista con todas las comunidades que se han registrado""",
+        responses = [
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ListaComunidadesDto::class))])
+        ]
+    )
+    @RequestMapping(
+            method = [RequestMethod.GET],
+            value = ["/api/comunidades"],
+            produces = ["application/json"]
+    )
+    fun getComunidades(): ResponseEntity<ListaComunidadesDto>
 
     @Operation(
         summary = "Obtener información de la comunidad",
@@ -66,5 +82,5 @@ interface ComunidadApi {
             value = ["/api/comunidades/{idComunidad}"],
             produces = ["application/json"]
     )
-    fun getInfoComunidad(@Parameter(description = "", required = true) @PathVariable("idComunidad") idComunidad: kotlin.Any): ResponseEntity<ComunidadDto>
+    fun getInfoComunidad(@Parameter(description = "ID de la comunidad", required = true) @PathVariable("idComunidad") idComunidad: kotlin.Any): ResponseEntity<ComunidadDto>
 }

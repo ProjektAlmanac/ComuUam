@@ -14,25 +14,17 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * Datos necesarios para crear un usuario
+ * 
+ * @param id 
  * @param nombre 
- * @param apellidos 
- * @param correo 
- * @param password 
  */
-data class CreacionUsuarioDto(
+data class CreadorComunidadDto(
 
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("nombre", required = true) val nombre: kotlin.String,
+    @get:JsonProperty("id", required = true) val id: kotlin.Int,
 
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("apellidos", required = true) val apellidos: kotlin.String,
-
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("correo", required = true) val correo: kotlin.String,
-
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("password", required = true) val password: kotlin.String
+    @get:JsonProperty("nombre", required = true) val nombre: kotlin.String
 ) {
 
 }

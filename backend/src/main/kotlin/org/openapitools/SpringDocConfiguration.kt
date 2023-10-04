@@ -22,7 +22,14 @@ class SpringDocConfiguration {
                     .description("Correo de contacto del API")
                     .contact(
                         Contact()
+                            .name("Proyect Almanac")
+                            .url("https://ProjektAlmanac.github.io")
                             .email("miguel.gzm98@gmail.com")
+                    )
+                    .license(
+                        License()
+                            .name("MIT")
+                            .url("https://proyektalmanac.github.io/license")
                     )
                     .version("1.0")
             )
