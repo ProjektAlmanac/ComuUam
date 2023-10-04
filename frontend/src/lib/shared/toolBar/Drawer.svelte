@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Drawer, { AppContent, Content, Header, Title, Subtitle, Scrim } from '@smui/drawer';
+	import Drawer, { Content, Header, Title, Subtitle, Scrim } from '@smui/drawer';
 	import List, { Item, Text, Graphic, Separator, Subheader } from '@smui/list';
 	import { page } from '$app/stores';
 
