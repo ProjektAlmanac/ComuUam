@@ -134,6 +134,10 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdUsuario"
       operationId: getId
       x-stoplight:
         id: 9985n1ey6vdqv

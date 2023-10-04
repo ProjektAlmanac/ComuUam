@@ -16,11 +16,14 @@
 import * as runtime from '../runtime';
 import type {
   CreacionUsuario,
+  IdUsuario,
   UsuarioCreado,
 } from '../models/index';
 import {
     CreacionUsuarioFromJSON,
     CreacionUsuarioToJSON,
+    IdUsuarioFromJSON,
+    IdUsuarioToJSON,
     UsuarioCreadoFromJSON,
     UsuarioCreadoToJSON,
 } from '../models/index';
@@ -77,7 +80,7 @@ export class UsuariosApi extends runtime.BaseAPI {
      * Recupera el ID del usuario basado en la información de su JWT
      * Recuperar ID
      */
-    async getIdRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getIdRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdUsuario>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -97,15 +100,16 @@ export class UsuariosApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdUsuarioFromJSON(jsonValue));
     }
 
     /**
      * Recupera el ID del usuario basado en la información de su JWT
      * Recuperar ID
      */
-    async getId(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.getIdRaw(initOverrides);
+    async getId(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdUsuario> {
+        const response = await this.getIdRaw(initOverrides);
+        return await response.value();
     }
 
 }
