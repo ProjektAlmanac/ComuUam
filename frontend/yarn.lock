@@ -677,6 +677,24 @@
     "@material/feature-targeting" "^14.0.0"
     tslib "^2.1.0"
 
+"@material/drawer@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@material/drawer/-/drawer-14.0.0.tgz#bd1421bc45a1d8824f8fab7f23893997d01580ef"
+  integrity sha512-VPrxMIhbkXVbfH7aMFV+Um0tjOVrU/Y65X2hWsVdmjASadE8C5UYjIE3vjL1DM1M+zIa3qZZRUWqz0j1zqbr3w==
+  dependencies:
+    "@material/animation" "^14.0.0"
+    "@material/base" "^14.0.0"
+    "@material/dom" "^14.0.0"
+    "@material/elevation" "^14.0.0"
+    "@material/feature-targeting" "^14.0.0"
+    "@material/list" "^14.0.0"
+    "@material/ripple" "^14.0.0"
+    "@material/rtl" "^14.0.0"
+    "@material/shape" "^14.0.0"
+    "@material/theme" "^14.0.0"
+    "@material/typography" "^14.0.0"
+    tslib "^2.1.0"
+
 "@material/elevation@^14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-14.0.0.tgz#82018c3f0856ff5057d9f80df43db27b1e19a52b"
@@ -765,6 +783,22 @@
     "@material/base" "^14.0.0"
     "@material/feature-targeting" "^14.0.0"
     "@material/theme" "^14.0.0"
+    tslib "^2.1.0"
+
+"@material/list@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@material/list/-/list-14.0.0.tgz#724d8a17b01200217262036ef031489270170c89"
+  integrity sha512-AFaBGV9vQyfnG8BT2R3UGVdF5w2SigQqBH+qbOSxQhk4BgVvhDfJUIKT415poLNMdnaDtcuYz+ZWvVNoRDaL7w==
+  dependencies:
+    "@material/base" "^14.0.0"
+    "@material/density" "^14.0.0"
+    "@material/dom" "^14.0.0"
+    "@material/feature-targeting" "^14.0.0"
+    "@material/ripple" "^14.0.0"
+    "@material/rtl" "^14.0.0"
+    "@material/shape" "^14.0.0"
+    "@material/theme" "^14.0.0"
+    "@material/typography" "^14.0.0"
     tslib "^2.1.0"
 
 "@material/notched-outline@^14.0.0":
@@ -1068,6 +1102,16 @@
   integrity sha512-mrK7B75L9so6EtzRolkAZkatC1sKHAP+gvIjU+JSfmSJnaRuglTS5ZTcosEmP759GA7E4scAQtOY1Qw7BgVO/g==
   dependencies:
     "@material/dom" "^14.0.0"
+    svelte2tsx "^0.6.21"
+
+"@smui/drawer@^7.0.0-beta.15":
+  version "7.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@smui/drawer/-/drawer-7.0.0-beta.15.tgz#fe909c9f27e35972585e15191e11de4fe1f3523e"
+  integrity sha512-eEwTVDQliS0agZAelPi04W+KUIVP2uxTvnn9/kGPaIK++C25tWEf/9xhn6uboD1knPQJfZV6zx4ONco2zTVRng==
+  dependencies:
+    "@material/dom" "^14.0.0"
+    "@material/drawer" "^14.0.0"
+    "@smui/common" "^7.0.0-beta.15"
     svelte2tsx "^0.6.21"
 
 "@smui/floating-label@^7.0.0-beta.15":
