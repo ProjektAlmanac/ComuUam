@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface ComunidadRepository : JpaRepository<Comunidad?, Int?> {
     fun findComunidadById(id: Int?): Comunidad?
+    fun addUserById(id:Int?): Comunidad?
 }
