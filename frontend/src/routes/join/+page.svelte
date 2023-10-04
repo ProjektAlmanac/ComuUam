@@ -40,7 +40,11 @@
 			<Card class="community-card">
 				<h1 class="nombre-comunidad">{comunidad.nombre}</h1>
 				<h2>Descripción</h2>
-				<p>{@html marked(comunidad.descricion)}</p>
+				<p>
+					{@html marked(
+						'# Heading 1\n## Heading 2\n### Heading 3\n#### Heading 4\n##### Heading 5\n###### Heading 6'
+					)}
+				</p>
 				<div class="botones">
 					<Button variant="raised" on:click={() => inscribirComunidad(comunidad.idComunidad)}
 						>Inscribirme</Button

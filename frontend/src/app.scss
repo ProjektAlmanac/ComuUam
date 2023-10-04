@@ -31,26 +31,32 @@ html {
 
 h1 {
 	@include typography.typography('headline1');
+	font-size: 3rem;
 }
 
 h2 {
 	@include typography.typography('headline2');
+	font-size: 2.6rem;
 }
 
 h3 {
 	@include typography.typography('headline3');
+	font-size: 2.2rem;
 }
 
 h4 {
 	@include typography.typography('headline4');
+	font-size: 1.8rem;
 }
 
 h5 {
 	@include typography.typography('headline5');
+	font-size: 1.4rem;
 }
 
 h6 {
 	@include typography.typography('headline6');
+	font-size: 1rem;
 }
 
 caption {

@@ -20,7 +20,7 @@
 	<form on:submit|preventDefault={crearComunidad}>
 		<LayoutGrid>
 			<Cell span={12}>
-				<h3>Crear Comunidad</h3>
+				<h1>Crear Comunidad</h1>
 			</Cell>
 
 			<Cell span={12}>
