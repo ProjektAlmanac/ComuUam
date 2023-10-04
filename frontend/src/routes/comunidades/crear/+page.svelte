@@ -1,18 +1,31 @@
-<script>
+<script lang="ts">
 	import Textfield from '@smui/textfield';
 	import FormField from '@smui/form-field';
 	import Radio from '@smui/radio';
 	import Button, { Label } from '@smui/button';
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
+	import services from '$lib/services';
+	import { Visibilidad } from '$lib/generated/openapi';
+	import { currentUser } from '$lib/store';
 
 	let nombre = '';
-	let visibilidad = 'Publico';
+	let visibilidad: Visibilidad = 'Publico';
 	let descripcion = '';
 
+	const { comunidadApi } = services;
+
 	function crearComunidad() {
-		console.log('Nombre:', nombre);
-		console.log('Visibilidad:', visibilidad);
-		console.log('Descripción:', descripcion);
+		comunidadApi.crearComunidad(
+			{
+				creacionComunidad: {
+					categorias: [],
+					descripcion,
+					nombre,
+					visibilidad
+				}
+			},
+			{ credentials: 'include' }
+		);
 	}
 </script>
 
@@ -35,11 +48,11 @@
 
 			<Cell span={12}>
 				<FormField>
-					<Radio bind:group={visibilidad} value="Publico" />
+					<Radio bind:group={visibilidad} value={Visibilidad.Publico} />
 					<Label slot="label">Pública</Label>
 				</FormField>
 				<FormField>
-					<Radio bind:group={visibilidad} value="Privado" />
+					<Radio bind:group={visibilidad} value={Visibilidad.Privado} />
 					<Label slot="label">Privada</Label>
 				</FormField>
 			</Cell>
