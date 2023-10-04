@@ -1,6 +1,7 @@
 <script lang="ts">
-	import ToolBar from "$lib/shared/toolBar/ToolBar.svelte";
+	import ToolBar from '$lib/shared/toolBar/ToolBar.svelte';
+	import '../app.scss';
 </script>
 
-<ToolBar></ToolBar>
-<slot></slot>
+<ToolBar />
+<slot />
