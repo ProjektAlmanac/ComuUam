@@ -12,11 +12,11 @@ info:
   contact:
     name: Proyect Almanac
     email: miguel.gzm98@gmail.com
-    url: https://ProjektAlmanac.github.io
+    url: 'https://ProjektAlmanac.github.io'
   description: Correo de contacto del API
   license:
     name: MIT
-    url: https://proyektalmanac.github.io/license
+    url: 'https://proyektalmanac.github.io/license'
 servers:
   - url: 'http://localhost:3000'
 paths:
@@ -103,6 +103,27 @@ paths:
       x-stoplight:
         id: b70fpvufymzr1
       description: Recupera una lista con todas las comunidades que se han registrado
+      tags:
+        - comunidad
+    post:
+      summary: Crear una nueva comunidad
+      operationId: crearComunidad
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComunidadCreada'
+      x-stoplight:
+        id: kv5w6d802jxcw
+      description: Registra una nueva comunidad en el sistema
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreacionComunidad'
+        description: Datos para la creación de una comunidad
       tags:
         - comunidad
 components:
@@ -237,3 +258,63 @@ components:
         - descricion
         - categoria
         - tipo
+    CreacionComunidad:
+      type: object
+      x-examples:
+        Example 1:
+          visibilidad: string
+          descripcion: string
+          categorias:
+            - String
+            - ...
+            - String
+      description: Datos necesarios para crear una comunidad
+      properties:
+        visibilidad:
+          $ref: '#/components/schemas/Visibilidad'
+        descripcion:
+          type: string
+        categorias:
+          type: array
+          items:
+            type: string
+      required:
+        - visibilidad
+        - descripcion
+        - categorias
+    Visibilidad:
+      title: Visibilidad
+      x-stoplight:
+        id: v1nanpxhz4xq7
+      enum:
+        - Publico
+        - Privado
+      description: Representa los posibles estados de la visibilidad de una comunidad
+    ComunidadCreada:
+      type: object
+      x-examples:
+        Example 1:
+          id: 1
+          visibilidad: string
+          descripcion: string
+          categorias:
+            - String
+            - ...
+            - String
+      description: Datos de una comunidad creada
+      properties:
+        id:
+          type: integer
+        visibilidad:
+          $ref: '#/components/schemas/Visibilidad'
+        descripcion:
+          type: string
+        categorias:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - visibilidad
+        - descripcion
+        - categorias

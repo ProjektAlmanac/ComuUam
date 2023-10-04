@@ -2,6 +2,7 @@ package io.github.projektalmanac.comunidades.generated.dto
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonProperty
+import io.github.projektalmanac.comunidades.generated.dto.CreadorComunidadDto
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -14,25 +15,22 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
- * Datos necesarios para crear un usuario
+ * 
  * @param nombre 
- * @param apellidos 
- * @param correo 
- * @param password 
+ * @param creadoPor 
+ * @param descripcion 
  */
-data class CreacionUsuarioDto(
+data class DetallesComunidadDto(
 
     @Schema(example = "null", required = true, description = "")
     @get:JsonProperty("nombre", required = true) val nombre: kotlin.String,
 
+    @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("apellidos", required = true) val apellidos: kotlin.String,
+    @get:JsonProperty("creadoPor", required = true) val creadoPor: CreadorComunidadDto,
 
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("correo", required = true) val correo: kotlin.String,
-
-    @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("password", required = true) val password: kotlin.String
+    @get:JsonProperty("descripcion", required = true) val descripcion: kotlin.String
 ) {
 
 }
