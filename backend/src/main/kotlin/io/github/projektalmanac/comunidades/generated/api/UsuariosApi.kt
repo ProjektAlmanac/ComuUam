@@ -6,6 +6,7 @@
 package io.github.projektalmanac.comunidades.generated.api
 
 import io.github.projektalmanac.comunidades.generated.dto.CreacionUsuarioDto
+import io.github.projektalmanac.comunidades.generated.dto.IdUsuarioDto
 import io.github.projektalmanac.comunidades.generated.dto.UsuarioCreadoDto
 import io.swagger.v3.oas.annotations.*
 import io.swagger.v3.oas.annotations.enums.*
@@ -53,4 +54,19 @@ interface UsuariosApi {
             consumes = ["application/json"]
     )
     fun crearUsuario(@Parameter(description = "") @Valid @RequestBody(required = false) creacionUsuarioDto: CreacionUsuarioDto?): ResponseEntity<UsuarioCreadoDto>
+
+    @Operation(
+        summary = "Recuperar ID",
+        operationId = "getId",
+        description = """Recupera el ID del usuario basado en la información de su JWT""",
+        responses = [
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = IdUsuarioDto::class))])
+        ]
+    )
+    @RequestMapping(
+            method = [RequestMethod.GET],
+            value = ["/api/usuarios/id"],
+            produces = ["application/json"]
+    )
+    fun getId(): ResponseEntity<IdUsuarioDto>
 }
