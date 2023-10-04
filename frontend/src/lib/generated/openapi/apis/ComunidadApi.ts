@@ -17,12 +17,15 @@ import * as runtime from '../runtime';
 import type {
   Comunidad,
   IdUsuario,
+  ListaComunidades,
 } from '../models/index';
 import {
     ComunidadFromJSON,
     ComunidadToJSON,
     IdUsuarioFromJSON,
     IdUsuarioToJSON,
+    ListaComunidadesFromJSON,
+    ListaComunidadesToJSON,
 } from '../models/index';
 
 export interface AgregarMiembroComunidadRequest {
@@ -71,6 +74,34 @@ export class ComunidadApi extends runtime.BaseAPI {
      */
     async agregarMiembroComunidad(requestParameters: AgregarMiembroComunidadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.agregarMiembroComunidadRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Recupera una lista con todas las comunidades que se han registrado
+     * Your GET endpoint
+     */
+    async getComunidadesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListaComunidades>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/api/comunidades`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListaComunidadesFromJSON(jsonValue));
+    }
+
+    /**
+     * Recupera una lista con todas las comunidades que se han registrado
+     * Your GET endpoint
+     */
+    async getComunidades(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListaComunidades> {
+        const response = await this.getComunidadesRaw(initOverrides);
+        return await response.value();
     }
 
     /**

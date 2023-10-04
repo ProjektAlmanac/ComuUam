@@ -24,25 +24,25 @@ export interface CreacionUsuario {
      * @type {string}
      * @memberof CreacionUsuario
      */
-    nombre?: string;
+    nombre: string;
     /**
      * 
      * @type {string}
      * @memberof CreacionUsuario
      */
-    apellidos?: string;
+    apellidos: string;
     /**
      * 
      * @type {string}
      * @memberof CreacionUsuario
      */
-    correo?: string;
+    correo: string;
     /**
      * 
      * @type {string}
      * @memberof CreacionUsuario
      */
-    password?: string;
+    password: string;
 }
 
 /**
@@ -50,6 +50,10 @@ export interface CreacionUsuario {
  */
 export function instanceOfCreacionUsuario(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "nombre" in value;
+    isInstance = isInstance && "apellidos" in value;
+    isInstance = isInstance && "correo" in value;
+    isInstance = isInstance && "password" in value;
 
     return isInstance;
 }
@@ -64,10 +68,10 @@ export function CreacionUsuarioFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'nombre': !exists(json, 'nombre') ? undefined : json['nombre'],
-        'apellidos': !exists(json, 'apellidos') ? undefined : json['apellidos'],
-        'correo': !exists(json, 'correo') ? undefined : json['correo'],
-        'password': !exists(json, 'password') ? undefined : json['password'],
+        'nombre': json['nombre'],
+        'apellidos': json['apellidos'],
+        'correo': json['correo'],
+        'password': json['password'],
     };
 }
 
