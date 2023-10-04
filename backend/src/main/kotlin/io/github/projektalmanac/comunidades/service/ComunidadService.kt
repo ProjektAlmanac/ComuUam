@@ -77,7 +77,7 @@ class ComunidadService(private val comunidadRepository: ComunidadRepository, pri
 
             val creadoPorVariable = CreadorComunidadDto (
                 id = comunidad?.dueno?.idUser!!,
-                nombre = comunidad.dueno.name + " " + comunidad.dueno.lastName,
+                nombre = comunidad.dueno!!.name + " " + comunidad.dueno!!.lastName,
             )
 
             val detalleComunidad = DetallesComunidadDto (

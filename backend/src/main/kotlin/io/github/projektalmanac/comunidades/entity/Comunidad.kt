@@ -7,15 +7,15 @@ class Comunidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int? = null
-    val nombre: String? = null
-    val descripcion: String? = null
+    var id: Int? = null
+    var nombre: String? = null
+    var descripcion: String? = null
 
     @ManyToOne
-    val dueno: User? = null
+    var dueno: User? = null
 
-    val visibilidad: String? = null
-    val categoria: String? = null
+    var visibilidad: String? = null
+    var categoria: String? = null
     
     @ManyToMany
     @JoinTable(
@@ -24,5 +24,5 @@ class Comunidad {
         inverseJoinColumns = [JoinColumn(name = "comunidad_id")]
     )
 
-    val usuariosInscritos: MutableList<User> = ArrayList()
+    var usuariosInscritos: MutableList<User> = ArrayList()
 }
