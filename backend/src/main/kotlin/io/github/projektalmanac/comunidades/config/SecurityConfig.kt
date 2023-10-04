@@ -39,6 +39,7 @@ class ConfigSeguridad {
                     customizer.jwtAuthenticationConverter(jwtAuthenticationConverter())
                 }
             }
+            .cors()
         return http.build()
     }
 

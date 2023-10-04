@@ -1,51 +1,15 @@
 <script lang="ts">
+	import type { ListaComunidades } from '$lib/generated/openapi';
+	import services from '$lib/services';
 	import Card from '$lib/shared/cards/Card.svelte';
-	import { Row } from '@smui/top-app-bar';
+	import { onMount } from 'svelte';
+	
+	let comunidades: ListaComunidades = { comunidades: [] }
 
-	let comunidades = {
-		comunidades: [
-			{
-				nombre: 'Comunidad Java',
-				creadoPor: {
-					id: 1,
-					nombre: 'Miguel Guzman'
-				},
-				descripcion: 'Ven y aprende'
-			},
-			{
-				nombre: 'Comunidad Java 2',
-				creadoPor: {
-					id: 1,
-					nombre: 'Miguel Guzman'
-				},
-				descripcion: 'Ven y aprende'
-			},
-			{
-				nombre: 'Comunidad Java 2',
-				creadoPor: {
-					id: 1,
-					nombre: 'Miguel Guzman'
-				},
-				descripcion: 'Ven y aprende'
-			},
-			{
-				nombre: 'Comunidad Java 2',
-				creadoPor: {
-					id: 1,
-					nombre: 'Miguel Guzman'
-				},
-				descripcion: 'Ven y aprende'
-			},
-			{
-				nombre: 'Comunidad Java 2',
-				creadoPor: {
-					id: 1,
-					nombre: 'Miguel Guzman'
-				},
-				descripcion: 'Ven y aprende'
-			}
-		]
-	};
+	onMount(async () => {
+		comunidades = await services.comunidadApi.getComunidades()
+		console.log(comunidades)
+	})
 </script>
 
 <div class="titulo">

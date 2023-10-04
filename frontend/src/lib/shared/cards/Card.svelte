@@ -20,7 +20,7 @@
 	<div class="card-container">
 		<Card>
 			<PrimaryAction on:click={() => clicked++}>
-				<Media class="card-media-16x9" aspectRatio="16x9" />
+				<img src="https://yt3.googleusercontent.com/2tjUUCtSdXwQthDFK4gPuKd1kbYAKgUH8A003UnShfJbzo4BQKl3weBIsCSJuWI0pHy75bpN=s900-c-k-c0x00ffffff-no-rj" width="300" alt="Imagen">
 				<Content class="mdc-typography--body2">
 					<h2 class="mdc-typography--headline6" style="margin: 0;">{comunidad.nombre}</h2>
 					<h3 class="mdc-typography--subtitle2" style="margin: 0 0 10px; color: #888;">
