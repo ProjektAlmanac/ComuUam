@@ -4,7 +4,7 @@ import { Configuration } from '../generated/openapi';
 import { getAuth } from 'firebase/auth';
 
 const config = new Configuration({
-	basePath: 'http://localhost:8080',
+	basePath: globalThis.location?.origin,
 	accessToken: () => {
 		const auth = getAuth();
 		const token = auth.currentUser?.getIdToken() ?? '';

@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
+    kotlin("kapt") version "1.8.22"
 
 	id("org.openapi.generator") version "7.0.1"
 }
@@ -22,6 +23,10 @@ repositories {
 }
 
 dependencies {
+
+    implementation("org.mapstruct:mapstruct:1.5.5.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.5.5.Final")
+
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -56,10 +61,6 @@ dependencies {
 
     }
     implementation("javax.servlet:javax.servlet-api:3.1.0")
-
-    implementation("org.mapstruct:mapstruct:1.5.5.Final")
-    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
-
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server:3.0.4")
 }
 

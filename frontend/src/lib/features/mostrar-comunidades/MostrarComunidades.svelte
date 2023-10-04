@@ -4,15 +4,15 @@
 	import Card from '$lib/shared/cards/Card.svelte';
 	import { onMount } from 'svelte';
 	import Button, { Label } from '@smui/button';
- 
-  	let clicked = 0;
-	
-	let comunidades: ListaComunidades = { comunidades: [] }
+
+	let clicked = 0;
+
+	let comunidades: ListaComunidades = { comunidades: [] };
 
 	onMount(async () => {
-		comunidades = await services.comunidadApi.getComunidades()
-		console.log(comunidades)
-	})
+		comunidades = await services.comunidadApi.getComunidades();
+		console.log(comunidades);
+	});
 </script>
 
 <div class="titulo">
@@ -26,7 +26,6 @@
 			<Label>Crear nueva comunidad</Label>
 		</Button>
 	</a>
-	
 </div>
 
 <div class="row">

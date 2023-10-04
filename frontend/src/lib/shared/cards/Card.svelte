@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Card, {
+	import Card, {
 		Content,
 		PrimaryAction,
 		Media,
@@ -20,7 +20,11 @@
 	<div class="card-container">
 		<Card>
 			<PrimaryAction on:click={() => clicked++}>
-				<img src="https://yt3.googleusercontent.com/2tjUUCtSdXwQthDFK4gPuKd1kbYAKgUH8A003UnShfJbzo4BQKl3weBIsCSJuWI0pHy75bpN=s900-c-k-c0x00ffffff-no-rj" width="300" alt="Imagen">
+				<img
+					src="https://yt3.googleusercontent.com/2tjUUCtSdXwQthDFK4gPuKd1kbYAKgUH8A003UnShfJbzo4BQKl3weBIsCSJuWI0pHy75bpN=s900-c-k-c0x00ffffff-no-rj"
+					width="300"
+					alt="Imagen"
+				/>
 				<Content class="mdc-typography--body2">
 					<h2 class="mdc-typography--headline6" style="margin: 0;">{comunidad.nombre}</h2>
 					<h3 class="mdc-typography--subtitle2" style="margin: 0 0 10px; color: #888;">
@@ -31,9 +35,11 @@
 			</PrimaryAction>
 			<Actions>
 				<ActionButtons>
-					<Button on:click={() => clicked++}>
-						<Label>Inscribirme</Label>
-					</Button>
+					<a href="/join?id={comunidad.id}">
+						<Button on:click={() => clicked++}>
+							<Label>Inscribirme</Label>
+						</Button>
+					</a>
 				</ActionButtons>
 			</Actions>
 		</Card>

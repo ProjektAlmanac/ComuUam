@@ -26,33 +26,28 @@ import org.springframework.security.oauth2.jwt.Jwt
 class ComunidadService(
     private val comunidadRepository: ComunidadRepository,
     private val userRepository: UserRepository,
-    private val usuariosController: UsuariosController
+    private val comunidadMapper: ComunidadMapper
 ) {
 
     fun getInfoComunidad(idComunidad: Any): ComunidadDto {
         LOGGER.info(">> getInfoComunidad {}", idComunidad)
-        val idComunidadInt: Int? = (idComunidad as? Int)?.toInt() ?: throw IllegalArgumentException("Error, parceo incorrecto")
-        val comunidad = comunidadRepository.findComunidadById(idComunidadInt) ?: throw CommunityNotFoundException(idComunidadInt!!)
-        val comunidadDto = ComunidadMapper.INSTANCE.comunidadToDto(comunidad)?: throw IllegalArgumentException("Error, el mapeo de entidad no fue exitoso")
+        val idComunidadInt = Integer.parseInt(idComunidad.toString())
+        val comunidad = comunidadRepository.findComunidadById(idComunidadInt) ?: throw CommunityNotFoundException(idComunidadInt)
+        val comunidadDto = comunidadMapper.comunidadToDto(comunidad)
         LOGGER.info("<< getInfoComunidad {}", idComunidad)
         return comunidadDto
     }
 
     fun agregaMiembroComunidad(idComunidad: Any, usuarioDto: IdUsuarioDto?) {
-        LOGGER.info(">> agregaMiembroComunidad {}", idComunidad)
-        val idComunidadInt: Int? = (idComunidad as? Int)?.toInt() ?: throw IllegalArgumentException("Error, parceo incorrecto")
-        val comunidad = comunidadRepository.findComunidadById(idComunidadInt) ?: throw CommunityNotFoundException(idComunidadInt!!)
+        LOGGER.info("> agregaMiembroComunidad {}", idComunidad)
+        val idComunidadInt = Integer.parseInt(idComunidad.toString())
+        val comunidad = comunidadRepository.findComunidadById(idComunidadInt) ?: throw CommunityNotFoundException(idComunidadInt)
         val usuario = usuarioDto?.idUsuario?.let { userRepository.findUserByIdUser(it) }
+            ?: throw UserNotFoundException(usuarioDto?.idUsuario!!)
 
-        if (usuario == null) if (usuarioDto != null) {
-            throw UserNotFoundException(usuarioDto.idUsuario)
-        }
+        comunidad.usuariosInscritos.add(usuario)
 
-        if (usuario != null) {
-            comunidad.usuariosInscritos.add(usuario)
-        }
-        val comuActualizada: Comunidad = comunidadRepository.save(comunidad)!!
-        if (comuActualizada == null) throw CommunityNotFoundException(idComunidad)
+        comunidadRepository.save(comunidad)
     }
 
     companion object {
@@ -60,14 +55,16 @@ class ComunidadService(
     }
 
     fun crearComunidad(creacionComunidadDto: CreacionComunidadDto?, authentication: Authentication): ComunidadCreadaDto {
+        requireNotNull(creacionComunidadDto)
         val principal = authentication.principal
         require(principal is Jwt)
         val email = principal.claims["email"] as String
-        val usuario = userRepository.findByCorreo(email)
-        val comunidad: Comunidad? = creacionComunidadDto?.let { ComunidadMapper.INSTANCE.toComunidad(it) }
-        comunidad?.let { comunidadRepository?.save(it) }
-        comunidad?.let { usuario?.agregarComunidad(it) }
-        usuario?.let { userRepository?.save(it) }
+        val usuario = userRepository.findByCorreo(email) ?: throw UserNotFoundException(-1)
+//        var comunidad  =  comunidadMapper.toComunidad(creacionComunidadDto)
+//        comunidad = comunidadRepository.save(comunidad)
+//        comunidad.dueno = usuario
+//        usuario.agregarComunidad(comunidad)
+//        userRepository.save(usuario)
         //comunidad = comunidadRepository.findById(book.getIsbn())
         //return toLibroRegistradoDto(book)
         TODO("Not yet implemented")
@@ -90,6 +87,7 @@ class ComunidadService(
                 nombre = comunidad.nombre!!,
                 descripcion = comunidad.descripcion!!,
                 creadoPor = creadoPorVariable,
+                id = comunidad.id ?: 0,
             )
             listaComunidades.add(detalleComunidad)
         }

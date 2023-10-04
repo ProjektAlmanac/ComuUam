@@ -5,14 +5,14 @@ import io.github.projektalmanac.comunidades.generated.dto.ComunidadDto
 import io.github.projektalmanac.comunidades.generated.dto.CreacionComunidadDto
 import io.github.projektalmanac.comunidades.generated.dto.ListaComunidadesDto
 import org.mapstruct.Mapper
+import org.mapstruct.Mapping
 import org.mapstruct.factory.Mappers
 
-@Mapper
+@Mapper(componentModel = "spring")
 interface ComunidadMapper {
-    companion object {
-        val INSTANCE = Mappers.getMapper(ComunidadMapper::class.java);
-    }
-
+    @Mapping(source = "descripcion", target = "descricion" )
+    @Mapping(source = "visibilidad", target = "tipo" )
+    @Mapping(source = "id", target = "idComunidad")
     fun comunidadToDto(comunidad: Comunidad): ComunidadDto
 
     fun toComunidad(creacionComunidadDto: CreacionComunidadDto): Comunidad

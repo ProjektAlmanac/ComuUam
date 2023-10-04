@@ -13,7 +13,7 @@ class User {
     var correo: String? = null
 
 
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany(mappedBy = "usuariosInscritos")
     val comunidad: MutableList<Comunidad> = ArrayList()
 
 
