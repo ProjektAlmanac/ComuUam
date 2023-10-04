@@ -33,5 +33,12 @@ class SpringDocConfiguration {
                     )
                     .version("1.0")
             )
+            .components(
+                Components()
+                    .addSecuritySchemes("jwt", SecurityScheme()
+                        .type(SecurityScheme.Type.HTTP)
+                        .scheme("bearer")
+                    )
+            )
     }
 }

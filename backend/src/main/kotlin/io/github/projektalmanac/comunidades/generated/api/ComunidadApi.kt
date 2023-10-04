@@ -47,7 +47,8 @@ interface ComunidadApi {
         description = """Agrega a un miembro a una comunidad""",
         responses = [
             ApiResponse(responseCode = "204", description = "No Content")
-        ]
+        ],
+        security = [ SecurityRequirement(name = "jwt") ]
     )
     @RequestMapping(
             method = [RequestMethod.POST],
@@ -62,7 +63,8 @@ interface ComunidadApi {
         description = """Registra una nueva comunidad en el sistema""",
         responses = [
             ApiResponse(responseCode = "201", description = "Created", content = [Content(schema = Schema(implementation = ComunidadCreadaDto::class))])
-        ]
+        ],
+        security = [ SecurityRequirement(name = "jwt") ]
     )
     @RequestMapping(
             method = [RequestMethod.POST],
@@ -78,7 +80,8 @@ interface ComunidadApi {
         description = """Recupera una lista con todas las comunidades que se han registrado""",
         responses = [
             ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ListaComunidadesDto::class))])
-        ]
+        ],
+        security = [ SecurityRequirement(name = "jwt") ]
     )
     @RequestMapping(
             method = [RequestMethod.GET],
@@ -93,7 +96,8 @@ interface ComunidadApi {
         description = """Obtiene la información de la comunidad""",
         responses = [
             ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ComunidadDto::class))])
-        ]
+        ],
+        security = [ SecurityRequirement(name = "jwt") ]
     )
     @RequestMapping(
             method = [RequestMethod.GET],
