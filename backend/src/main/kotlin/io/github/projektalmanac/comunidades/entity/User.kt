@@ -11,7 +11,7 @@ class User {
     var name: String? = null
     var lastName: String? = null
     var correo: String? = null
-    
+
 
     @ManyToMany(mappedBy = "usuarios")
     val comunidad: MutableList<Comunidad> = ArrayList()

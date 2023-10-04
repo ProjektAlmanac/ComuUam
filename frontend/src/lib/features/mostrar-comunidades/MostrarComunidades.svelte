@@ -21,7 +21,7 @@
 <hr />
 
 <div class="boton">
-	<a href="routes/crear-comunidad/+page.svelte">
+	<a href="/crear-comunidad">
 		<Button color="secondary" on:click={() => clicked++} variant="raised">
 			<Label>Crear nueva comunidad</Label>
 		</Button>
