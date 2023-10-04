@@ -299,10 +299,15 @@ components:
           type: array
           items:
             type: string
+        nombre:
+          type: string
+          x-stoplight:
+            id: 2cvty9lkj5hbd
       required:
         - visibilidad
         - descripcion
         - categorias
+        - nombre
     Visibilidad:
       title: Visibilidad
       x-stoplight:
@@ -334,11 +339,16 @@ components:
           type: array
           items:
             type: string
+        nombre:
+          type: string
+          x-stoplight:
+            id: v9qmgqh5iq0de
       required:
         - id
         - visibilidad
         - descripcion
         - categorias
+        - nombre
   securitySchemes:
     jwt:
       type: http

@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param visibilidad 
  * @param descripcion 
  * @param categorias 
+ * @param nombre 
  */
 data class ComunidadCreadaDto(
 
@@ -35,7 +36,10 @@ data class ComunidadCreadaDto(
     @get:JsonProperty("descripcion", required = true) val descripcion: kotlin.String,
 
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("categorias", required = true) val categorias: kotlin.collections.List<kotlin.String>
+    @get:JsonProperty("categorias", required = true) val categorias: kotlin.collections.List<kotlin.String>,
+
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("nombre", required = true) val nombre: kotlin.String
 ) {
 
 }

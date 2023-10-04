@@ -50,6 +50,12 @@ export interface ComunidadCreada {
      * @memberof ComunidadCreada
      */
     categorias: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ComunidadCreada
+     */
+    nombre: string;
 }
 
 /**
@@ -61,6 +67,7 @@ export function instanceOfComunidadCreada(value: object): boolean {
     isInstance = isInstance && "visibilidad" in value;
     isInstance = isInstance && "descripcion" in value;
     isInstance = isInstance && "categorias" in value;
+    isInstance = isInstance && "nombre" in value;
 
     return isInstance;
 }
@@ -79,6 +86,7 @@ export function ComunidadCreadaFromJSONTyped(json: any, ignoreDiscriminator: boo
         'visibilidad': VisibilidadFromJSON(json['visibilidad']),
         'descripcion': json['descripcion'],
         'categorias': json['categorias'],
+        'nombre': json['nombre'],
     };
 }
 
@@ -95,6 +103,7 @@ export function ComunidadCreadaToJSON(value?: ComunidadCreada | null): any {
         'visibilidad': VisibilidadToJSON(value.visibilidad),
         'descripcion': value.descripcion,
         'categorias': value.categorias,
+        'nombre': value.nombre,
     };
 }
 

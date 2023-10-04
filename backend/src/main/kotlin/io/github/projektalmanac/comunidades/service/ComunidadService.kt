@@ -67,7 +67,7 @@ class ComunidadService(private val comunidadRepository: ComunidadRepository, pri
         TODO("Not yet implemented")
     }
 
-    fun recuperaTodasLasComunidades(): ResponseEntity<ListaComunidadesDto> {
+    fun recuperaTodasLasComunidades(): ListaComunidadesDto {
 
         val comunidadesRecuperadas = comunidadRepository.findAll()
 
@@ -89,6 +89,6 @@ class ComunidadService(private val comunidadRepository: ComunidadRepository, pri
         }
         val listaComunidadesDto = ListaComunidadesDto (comunidades = listaComunidades)
         LOGGER.info("Recuperando todas las comunidades registradas")
-        return ResponseEntity.ok(listaComunidadesDto)
+        return listaComunidadesDto
     }
 }
