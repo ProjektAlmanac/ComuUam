@@ -56,6 +56,9 @@ dependencies {
 
     }
     implementation("javax.servlet:javax.servlet-api:3.1.0")
+
+    implementation("org.mapstruct:mapstruct:1.5.5.Final")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 }
 
 tasks.withType<KotlinCompile> {
