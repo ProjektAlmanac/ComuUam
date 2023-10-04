@@ -9,17 +9,17 @@
 		ActionIcons
 	} from '@smui/card';
 	import Button, { Label } from '@smui/button';
-	import IconButton, { Icon } from '@smui/icon-button';
 	import type { DetallesComunidad } from '$lib/generated/openapi';
 
 	export let comunidad: DetallesComunidad;
-	let clicked = 0;
+
+	export let inscrito: boolean = false;
 </script>
 
 <div class="card-display">
 	<div class="card-container">
 		<Card>
-			<PrimaryAction on:click={() => clicked++}>
+			<PrimaryAction>
 				<img
 					src="https://yt3.googleusercontent.com/2tjUUCtSdXwQthDFK4gPuKd1kbYAKgUH8A003UnShfJbzo4BQKl3weBIsCSJuWI0pHy75bpN=s900-c-k-c0x00ffffff-no-rj"
 					width="300"
@@ -35,11 +35,13 @@
 			</PrimaryAction>
 			<Actions>
 				<ActionButtons>
-					<a href="/comunidades/join?id={comunidad.id}">
-						<Button on:click={() => clicked++}>
-							<Label>Inscribirme</Label>
-						</Button>
-					</a>
+					{#if !inscrito}
+						<a href="/comunidades/join?id={comunidad.id}">
+							<Button>
+								<Label>Inscribirme</Label>
+							</Button>
+						</a>
+					{/if}
 				</ActionButtons>
 			</Actions>
 		</Card>

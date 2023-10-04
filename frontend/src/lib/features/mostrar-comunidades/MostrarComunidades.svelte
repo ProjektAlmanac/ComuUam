@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { ListaComunidades } from '$lib/generated/openapi';
 	import services from '$lib/services';
-	import Card from '$lib/shared/cards/Card.svelte';
+	import CommunityCard from '$lib/shared/cards/CommunityCard.svelte';
 	import { onMount } from 'svelte';
 	import Button, { Label } from '@smui/button';
 
@@ -11,7 +11,6 @@
 
 	onMount(async () => {
 		comunidades = await services.comunidadApi.getComunidades();
-		console.log(comunidades);
 	});
 </script>
 
@@ -31,7 +30,7 @@
 <div class="row">
 	{#each comunidades.comunidades as comunidad}
 		<div class="col-sm-12 col-lg-3 m-4">
-			<Card {comunidad} />
+			<CommunityCard {comunidad} />
 		</div>
 	{/each}
 </div>

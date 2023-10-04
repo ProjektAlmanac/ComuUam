@@ -6,7 +6,6 @@
 	export let open = false;
 
 	$: active = $page.url.pathname;
-	$: console.log(active);
 
 	function setActive(name: string) {
 		active = name;
@@ -14,7 +13,7 @@
 	}
 </script>
 
-<Drawer variant="modal" bind:open on:blur={() => console.log('click')}>
+<Drawer variant="modal" bind:open>
 	<Header>
 		<Title>ComuUam</Title>
 	</Header>
