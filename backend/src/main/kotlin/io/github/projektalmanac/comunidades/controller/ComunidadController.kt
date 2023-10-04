@@ -24,7 +24,7 @@ class ComunidadController(private val comunidadService: ComunidadService,private
     }
 
     override fun getComunidades(): ResponseEntity<ListaComunidadesDto> {
-        TODO("Not yet implemented")
+        return comunidadService.recuperaTodasLasComunidades()
     }
 
     override fun getInfoComunidad(idComunidad: Any): ResponseEntity<ComunidadDto> {

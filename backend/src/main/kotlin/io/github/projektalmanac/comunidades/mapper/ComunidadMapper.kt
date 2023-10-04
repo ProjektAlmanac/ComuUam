@@ -15,4 +15,5 @@ interface ComunidadMapper {
     fun comunidadToDto(comunidad: Comunidad): ComunidadDto
 
     fun toComunidad(creacionComunidadDto: CreacionComunidadDto): Comunidad
+
 }
