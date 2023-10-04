@@ -6,17 +6,17 @@ import io.github.projektalmanac.comunidades.generated.dto.IdUsuarioDto
 import io.github.projektalmanac.comunidades.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.RestController
 
-class ComunidadController constructor(private val userService:UserService): ComunidadApi {
 
-
+@RestController
+class ComunidadController: ComunidadApi {
     override fun agregarMiembroComunidad(idComunidad: Any, idUsuarioDto: IdUsuarioDto?): ResponseEntity<Unit> {
         TODO("Not yet implemented")
     }
 
     override fun getInfoComunidad(idComunidad: Any): ResponseEntity<ComunidadDto> {
-        val idComunidadInt: Int? = (idComunidad as? Int)?.toInt()
-        return  ResponseEntity.
 
+        TODO("Not yet implemented")
     }
 }
