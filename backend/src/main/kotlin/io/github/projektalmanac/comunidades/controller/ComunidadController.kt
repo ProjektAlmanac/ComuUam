@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class ComunidadController(private val comunidadService: ComunidadService,private val userService: UserService): ComunidadApi {
     override fun agregarMiembroComunidad(idComunidad: Any, idUsuarioDto: IdUsuarioDto?): ResponseEntity<Unit> {
-        TODO("Not yet implemented")
+        comunidadService.agregaMiembroComunidad(idComunidad,idUsuarioDto)
+        return ResponseEntity.accepted().build()
     }
 
     override fun crearComunidad(creacionComunidadDto: CreacionComunidadDto?): ResponseEntity<ComunidadCreadaDto> {
@@ -24,7 +25,7 @@ class ComunidadController(private val comunidadService: ComunidadService,private
     }
 
     override fun getInfoComunidad(idComunidad: Any): ResponseEntity<ComunidadDto> {
-        val comInfo: ComunidadDto = userService.getInfoComunidad(idComunidad)
+        val comInfo: ComunidadDto = comunidadService.getInfoComunidad(idComunidad)
         return ResponseEntity.ok(comInfo)
     }
 }

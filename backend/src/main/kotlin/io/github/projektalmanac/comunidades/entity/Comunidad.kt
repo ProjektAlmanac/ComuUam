@@ -24,5 +24,5 @@ class Comunidad {
         inverseJoinColumns = [JoinColumn(name = "comunidad_id")]
     )
 
-    val usuariosInscritos: List<User> = ArrayList()
+    val usuariosInscritos: MutableList<User> = ArrayList()
 }
