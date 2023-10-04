@@ -2,6 +2,7 @@ package io.github.projektalmanac.comunidades.mapper
 
 import io.github.projektalmanac.comunidades.entity.User
 import io.github.projektalmanac.comunidades.generated.dto.CreacionUsuarioDto
+import io.github.projektalmanac.comunidades.generated.dto.CreadorComunidadDto
 import io.github.projektalmanac.comunidades.generated.dto.UsuarioCreadoDto
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
@@ -21,4 +22,7 @@ interface UserMapper {
     @Mapping(source = "lastName", target = "apellidos")
     @Mapping(source = "idUser", target = "id")
     fun toDto(entity: User): UsuarioCreadoDto
+
+    @Mapping(target = "nombre", expression = """java(user.getName() + " " + user.getLastName())""")
+    fun toCreadorComunidadDto(user: User): CreadorComunidadDto
 }

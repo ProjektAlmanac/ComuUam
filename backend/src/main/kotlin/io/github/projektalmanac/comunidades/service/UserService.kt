@@ -2,9 +2,12 @@ package io.github.projektalmanac.comunidades.service
 
 import io.github.projektalmanac.comunidades.entity.User
 import io.github.projektalmanac.comunidades.exception.UserAlreadyExistsException
+import io.github.projektalmanac.comunidades.exception.UserNotFoundException
 import io.github.projektalmanac.comunidades.generated.dto.CreacionUsuarioDto
 import io.github.projektalmanac.comunidades.generated.dto.IdUsuarioDto
+import io.github.projektalmanac.comunidades.generated.dto.ListaComunidadesDto
 import io.github.projektalmanac.comunidades.generated.dto.UsuarioCreadoDto
+import io.github.projektalmanac.comunidades.mapper.ComunidadMapper
 import io.github.projektalmanac.comunidades.mapper.UserMapper
 import io.github.projektalmanac.comunidades.repository.ComunidadRepository
 import io.github.projektalmanac.comunidades.repository.UserRepository
@@ -17,7 +20,7 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class UserService (private val userRepository: UserRepository, private val comunidadRepository: ComunidadRepository) {
+class UserService (private val userRepository: UserRepository, private val comunidadRepository: ComunidadRepository, private val comunidadMapper: ComunidadMapper) {
 
 
     fun agregaMiembroComunidad(idComunidad: Int?, usuarioDto: IdUsuarioDto?) {}
@@ -55,6 +58,12 @@ class UserService (private val userRepository: UserRepository, private val comun
         user = userRepository.save(user)
         LOGGER.info("Usuario creado con id ${user.idUser}")
         return user
+    }
+
+    fun getComunidadesUsuario(id: Int): ListaComunidadesDto {
+        val user = userRepository.findUserByIdUser(id) ?: throw UserNotFoundException(id)
+        val comunidades = user.comunidad
+        return comunidadMapper.toListaComunidadesDto(comunidades)
     }
 
     companion object {

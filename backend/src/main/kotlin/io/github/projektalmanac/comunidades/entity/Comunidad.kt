@@ -11,13 +11,13 @@ class Comunidad {
     var nombre: String? = null
     var descripcion: String? = null
 
-    @ManyToOne
+    @ManyToOne(cascade = [CascadeType.ALL])
     var dueno: User? = null
 
     var visibilidad: String? = null
     var categoria: String? = null
     
-    @ManyToMany
+    @ManyToMany(cascade = [CascadeType.ALL])
     @JoinTable(
         name = "Usuarios",
         joinColumns = [JoinColumn(name = "user_id")],

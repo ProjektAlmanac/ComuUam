@@ -45,10 +45,19 @@ class ComunidadesApplication (private val userRepository: UserRepository, privat
 		comunidad2.visibilidad = "publica"
 		comunidad2.categoria = "prueba 2"
 
+		user.dueno.add(comunidad)
+		user.dueno.add(comunidad2)
+
+		user3.comunidad.add(comunidad)
+		user3.comunidad.add(comunidad2)
+
+		comunidad.usuariosInscritos.add(user3)
+		comunidad2.usuariosInscritos.add(user3)
 
 		userRepository.save(user)
 		userRepository.save(user2)
 		userRepository.save(user3)
+
 		comunidadRepository.save(comunidad)
 		comunidadRepository.save(comunidad2)
 	}

@@ -17,7 +17,7 @@ class User {
     val comunidad: MutableList<Comunidad> = ArrayList()
 
 
-    @OneToMany
+    @OneToMany(cascade = [CascadeType.ALL])
     val dueno: MutableList<Comunidad> = ArrayList()
 
     fun agregarComunidad(comunidad2: Comunidad): Boolean {
