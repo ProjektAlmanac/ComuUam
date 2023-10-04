@@ -16,6 +16,7 @@
 		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
 	},
 	"devDependencies": {
+		"@material/elevation": "^14.0.0",
 		"@openapitools/openapi-generator-cli": "^2.7.0",
 		"@smui/button": "^7.0.0-beta.15",
 		"@smui/icon-button": "^7.0.0-beta.15",
