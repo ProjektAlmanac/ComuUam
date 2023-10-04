@@ -38,7 +38,7 @@ class ComunidadService(private val comunidadRepository: ComunidadRepository, pri
         if (usuario != null) {
             comunidad.usuariosInscritos.add(usuario)
         }
-        val comuActualizada: Comunidad = comunidadRepository.updateByComunidad(comunidad)!!
+        val comuActualizada: Comunidad = comunidadRepository.save(comunidad)!!
         if (comuActualizada == null) throw CommunityNotFoundException(idComunidad)
     }
 
