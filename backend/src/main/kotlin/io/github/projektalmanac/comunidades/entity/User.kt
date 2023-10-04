@@ -7,11 +7,11 @@ import jakarta.persistence.*
 class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val idUser: Int? = null
-    val name: String? = null
-    val lastName: String? = null
-    val correo: String? = null
-
+    var idUser: Int? = null
+    var name: String? = null
+    var lastName: String? = null
+    var correo: String? = null
+    
 
     @ManyToMany(mappedBy = "usuarios")
     val comunidad: MutableList<Comunidad> = ArrayList()
@@ -27,4 +27,5 @@ class User {
             false
         }
     }
+
 }

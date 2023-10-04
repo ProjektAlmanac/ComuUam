@@ -12,14 +12,21 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class UsuariosController(private val userService: UserService): UsuariosApi {
     override fun crearUsuario(creacionUsuarioDto: CreacionUsuarioDto?): ResponseEntity<UsuarioCreadoDto> {
-        TODO("Not yet implemented")
+        val usuarioCreadoDto = userService.crearUsuario(creacionUsuarioDto!!)
+        return ResponseEntity.ok(usuarioCreadoDto)
     }
 
     override fun getId(): ResponseEntity<IdUsuarioDto> {
         val authentication = SecurityContextHolder.getContext().authentication
-        val userId = userService.getId(authentication)
-        if (userId === null)
-            TODO("Añadir al usuario")
-        return ResponseEntity.ok(IdUsuarioDto(userId))
+        val user = userService.getUser(authentication)
+        val id =
+            if (user === null) {
+                val createdUser = userService.crearUsuario(authentication)
+                createdUser.idUser!!
+            }
+            else
+                user.idUser!!
+
+        return ResponseEntity.ok(IdUsuarioDto(id))
     }
 }

@@ -83,7 +83,7 @@ class ComunidadService(
 
             val creadoPorVariable = CreadorComunidadDto (
                 id = comunidad?.dueno?.idUser!!,
-                nombre = comunidad.dueno.name + " " + comunidad.dueno.lastName,
+                nombre = comunidad.dueno!!.name + " " + comunidad.dueno!!.lastName,
             )
 
             val detalleComunidad = DetallesComunidadDto (
