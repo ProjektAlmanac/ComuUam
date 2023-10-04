@@ -1,6 +1,7 @@
 package io.github.projektalmanac.comunidades.mapper
 
 import io.github.projektalmanac.comunidades.entity.Comunidad
+import io.github.projektalmanac.comunidades.generated.dto.ComunidadCreadaDto
 import io.github.projektalmanac.comunidades.generated.dto.ComunidadDto
 import io.github.projektalmanac.comunidades.generated.dto.CreacionComunidadDto
 import io.github.projektalmanac.comunidades.generated.dto.ListaComunidadesDto
@@ -16,6 +17,9 @@ interface ComunidadMapper {
     fun comunidadToDto(comunidad: Comunidad): ComunidadDto
 
     fun toComunidad(creacionComunidadDto: CreacionComunidadDto): Comunidad
+
+    @Mapping(target = "categorias", expression = "java(new ArrayList<>())")
+    fun toComunidadCreadaDto(comunidad: Comunidad): ComunidadCreadaDto
 
     fun listComunidadToListDto(listComunidad: List<Comunidad>): List<ListaComunidadesDto>
 

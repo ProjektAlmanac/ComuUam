@@ -60,14 +60,12 @@ class ComunidadService(
         require(principal is Jwt)
         val email = principal.claims["email"] as String
         val usuario = userRepository.findByCorreo(email) ?: throw UserNotFoundException(-1)
-//        var comunidad  =  comunidadMapper.toComunidad(creacionComunidadDto)
-//        comunidad = comunidadRepository.save(comunidad)
-//        comunidad.dueno = usuario
-//        usuario.agregarComunidad(comunidad)
-//        userRepository.save(usuario)
-        //comunidad = comunidadRepository.findById(book.getIsbn())
-        //return toLibroRegistradoDto(book)
-        TODO("Not yet implemented")
+        var comunidad  =  comunidadMapper.toComunidad(creacionComunidadDto)
+        comunidad.dueno = usuario
+        usuario.agregarComunidad(comunidad)
+        comunidad = comunidadRepository.save(comunidad)
+        userRepository.save(usuario)
+        return comunidadMapper.toComunidadCreadaDto(comunidad)
     }
 
     fun recuperaTodasLasComunidades(): ListaComunidadesDto {

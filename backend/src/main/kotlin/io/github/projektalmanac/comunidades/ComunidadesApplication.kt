@@ -15,20 +15,30 @@ import org.springframework.context.annotation.ComponentScan
 class ComunidadesApplication (private val userRepository: UserRepository, private val comunidadRepository: ComunidadRepository){
 	@PostConstruct
 	fun init() {
-		var user = User()
+		val user = User()
 
 		user.name = "Juan"
 		user.lastName = "Perez"
 		user.correo = "juan.perez@titlani.uam.mx"
 
-		var comunidad = Comunidad()
+		val user2 = User()
+		user2.name = "Alan"
+		user2.lastName = "Turing"
+		user2.correo = "user@test.com"
+
+		val user3 = User()
+		user3.name = "Antar"
+		user3.lastName = "Espadas"
+		user3.correo = "espadas.antar@gmail.com"
+
+		val comunidad = Comunidad()
 		comunidad.nombre = "Comunidad de prueba"
 		comunidad.descripcion = "Comunidad de prueba"
 		comunidad.dueno = user
 		comunidad.visibilidad = "publica"
 		comunidad.categoria = "prueba"
 
-		var comunidad2 = Comunidad()
+		val comunidad2 = Comunidad()
 		comunidad2.nombre = "Comunidad de prueba 2"
 		comunidad2.descripcion = "Comunidad de prueba 2"
 		comunidad2.dueno = user
@@ -37,6 +47,8 @@ class ComunidadesApplication (private val userRepository: UserRepository, privat
 
 
 		userRepository.save(user)
+		userRepository.save(user2)
+		userRepository.save(user3)
 		comunidadRepository.save(comunidad)
 		comunidadRepository.save(comunidad2)
 	}
