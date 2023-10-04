@@ -84,5 +84,6 @@ openApiGenerate {
 	additionalProperties.put("interfaceOnly", true)
 	additionalProperties.put("skipDefaultInterface", true)
 	additionalProperties.put("configPackage", "io.github.projektalmanac.comunidades.generated.config")
+    additionalProperties.put("useTags", true)
 	additionalProperties.put("hideGenerationTimestamp", true)
 }

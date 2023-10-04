@@ -6,9 +6,7 @@
 package io.github.projektalmanac.comunidades.generated.api
 
 import io.github.projektalmanac.comunidades.generated.dto.ComunidadDto
-import io.github.projektalmanac.comunidades.generated.dto.CreacionUsuarioDto
 import io.github.projektalmanac.comunidades.generated.dto.IdUsuarioDto
-import io.github.projektalmanac.comunidades.generated.dto.UsuarioCreadoDto
 import io.swagger.v3.oas.annotations.*
 import io.swagger.v3.oas.annotations.enums.*
 import io.swagger.v3.oas.annotations.media.*
@@ -38,7 +36,7 @@ import kotlin.collections.Map
 
 @Validated
 @RequestMapping("\${api.base-path:}")
-interface ApiApi {
+interface ComunidadApi {
 
     @Operation(
         summary = "Agregar miembro a comunidad",
@@ -54,22 +52,6 @@ interface ApiApi {
             consumes = ["application/json"]
     )
     fun agregarMiembroComunidad(@Parameter(description = "", required = true) @PathVariable("idComunidad") idComunidad: kotlin.Any,@Parameter(description = "") @Valid @RequestBody(required = false) idUsuarioDto: IdUsuarioDto?): ResponseEntity<Unit>
-
-    @Operation(
-        summary = "Crear un nuevo usuario",
-        operationId = "crearUsuario",
-        description = """Crea un nuevo usuario""",
-        responses = [
-            ApiResponse(responseCode = "201", description = "Created", content = [Content(schema = Schema(implementation = UsuarioCreadoDto::class))])
-        ]
-    )
-    @RequestMapping(
-            method = [RequestMethod.POST],
-            value = ["/api/usuarios"],
-            produces = ["application/json"],
-            consumes = ["application/json"]
-    )
-    fun crearUsuario(@Parameter(description = "") @Valid @RequestBody(required = false) creacionUsuarioDto: CreacionUsuarioDto?): ResponseEntity<UsuarioCreadoDto>
 
     @Operation(
         summary = "Obtener información de la comunidad",
