@@ -3,11 +3,14 @@ apis/UsuariosApi.ts
 apis/index.ts
 index.ts
 models/Comunidad.ts
+models/ComunidadCreada.ts
+models/CreacionComunidad.ts
 models/CreacionUsuario.ts
 models/CreadorComunidad.ts
 models/DetallesComunidad.ts
 models/IdUsuario.ts
 models/ListaComunidades.ts
 models/UsuarioCreado.ts
+models/Visibilidad.ts
 models/index.ts
 runtime.ts

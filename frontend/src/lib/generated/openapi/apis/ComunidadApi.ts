@@ -16,12 +16,18 @@
 import * as runtime from '../runtime';
 import type {
   Comunidad,
+  ComunidadCreada,
+  CreacionComunidad,
   IdUsuario,
   ListaComunidades,
 } from '../models/index';
 import {
     ComunidadFromJSON,
     ComunidadToJSON,
+    ComunidadCreadaFromJSON,
+    ComunidadCreadaToJSON,
+    CreacionComunidadFromJSON,
+    CreacionComunidadToJSON,
     IdUsuarioFromJSON,
     IdUsuarioToJSON,
     ListaComunidadesFromJSON,
@@ -31,6 +37,10 @@ import {
 export interface AgregarMiembroComunidadRequest {
     idComunidad: any;
     idUsuario?: IdUsuario;
+}
+
+export interface CrearComunidadRequest {
+    creacionComunidad?: CreacionComunidad;
 }
 
 export interface GetInfoComunidadRequest {
@@ -74,6 +84,37 @@ export class ComunidadApi extends runtime.BaseAPI {
      */
     async agregarMiembroComunidad(requestParameters: AgregarMiembroComunidadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.agregarMiembroComunidadRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Registra una nueva comunidad en el sistema
+     * Crear una nueva comunidad
+     */
+    async crearComunidadRaw(requestParameters: CrearComunidadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ComunidadCreada>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/api/comunidades`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreacionComunidadToJSON(requestParameters.creacionComunidad),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ComunidadCreadaFromJSON(jsonValue));
+    }
+
+    /**
+     * Registra una nueva comunidad en el sistema
+     * Crear una nueva comunidad
+     */
+    async crearComunidad(requestParameters: CrearComunidadRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ComunidadCreada> {
+        const response = await this.crearComunidadRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
