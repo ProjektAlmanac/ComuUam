@@ -7,6 +7,7 @@ package io.github.projektalmanac.comunidades.generated.api
 
 import io.github.projektalmanac.comunidades.generated.dto.CreacionUsuarioDto
 import io.github.projektalmanac.comunidades.generated.dto.IdUsuarioDto
+import io.github.projektalmanac.comunidades.generated.dto.ListaComunidadesDto
 import io.github.projektalmanac.comunidades.generated.dto.UsuarioCreadoDto
 import io.swagger.v3.oas.annotations.*
 import io.swagger.v3.oas.annotations.enums.*
@@ -55,6 +56,22 @@ interface UsuariosApi {
             consumes = ["application/json"]
     )
     fun crearUsuario(@Parameter(description = "") @Valid @RequestBody(required = false) creacionUsuarioDto: CreacionUsuarioDto?): ResponseEntity<UsuarioCreadoDto>
+
+    @Operation(
+        summary = "Recupera las comunidades de un usuario",
+        operationId = "getComunidadesUsuario",
+        description = """""",
+        responses = [
+            ApiResponse(responseCode = "200", description = "OK", content = [Content(schema = Schema(implementation = ListaComunidadesDto::class))])
+        ],
+        security = [ SecurityRequirement(name = "jwt") ]
+    )
+    @RequestMapping(
+            method = [RequestMethod.GET],
+            value = ["/api/usuarios/{id}/comunidades"],
+            produces = ["application/json"]
+    )
+    fun getComunidadesUsuario(@Parameter(description = "ID del usuario", required = true) @PathVariable("id") id: kotlin.Any): ResponseEntity<ListaComunidadesDto>
 
     @Operation(
         summary = "Recuperar ID",

@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   CreacionUsuario,
   IdUsuario,
+  ListaComunidades,
   UsuarioCreado,
 } from '../models/index';
 import {
@@ -24,12 +25,18 @@ import {
     CreacionUsuarioToJSON,
     IdUsuarioFromJSON,
     IdUsuarioToJSON,
+    ListaComunidadesFromJSON,
+    ListaComunidadesToJSON,
     UsuarioCreadoFromJSON,
     UsuarioCreadoToJSON,
 } from '../models/index';
 
 export interface CrearUsuarioRequest {
     creacionUsuario?: CreacionUsuario;
+}
+
+export interface GetComunidadesUsuarioRequest {
+    id: any;
 }
 
 /**
@@ -73,6 +80,44 @@ export class UsuariosApi extends runtime.BaseAPI {
      */
     async crearUsuario(requestParameters: CrearUsuarioRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UsuarioCreado> {
         const response = await this.crearUsuarioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Recupera las comunidades de un usuario
+     */
+    async getComunidadesUsuarioRaw(requestParameters: GetComunidadesUsuarioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListaComunidades>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getComunidadesUsuario.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("jwt", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/usuarios/{id}/comunidades`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListaComunidadesFromJSON(jsonValue));
+    }
+
+    /**
+     * Recupera las comunidades de un usuario
+     */
+    async getComunidadesUsuario(requestParameters: GetComunidadesUsuarioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListaComunidades> {
+        const response = await this.getComunidadesUsuarioRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

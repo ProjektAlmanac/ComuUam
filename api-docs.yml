@@ -143,6 +143,28 @@ paths:
         id: 9985n1ey6vdqv
       description: Recupera el ID del usuario basado en la información de su JWT
     parameters: []
+  "/api/usuarios/{id}/comunidades":
+    parameters:
+      - schema:
+          type: integer
+        name: id
+        in: path
+        required: true
+        description: ID del usuario
+    get:
+      summary: Recupera las comunidades de un usuario
+      tags:
+        - usuarios
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListaComunidades"
+      operationId: getComunidadesUsuario
+      x-stoplight:
+        id: 97o58pmx2dpjj
 components:
   schemas:
     IdUsuario:
