@@ -1,0 +1,162 @@
+openapi: 3.1.0
+tags:
+  - name: comunidad
+    description: Operaciones relacionadas con comunidades
+  - name: usuarios
+    description: Operaciones relacionadas con usuarios
+x-stoplight:
+  id: 9fznkd587c7ta
+info:
+  title: Comuam
+  version: '1.0'
+  contact:
+    email: miguel.gzm98@gmail.com
+  description: Correo de contacto del API
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/api/comunidades/{idComunidad}':
+    parameters:
+      - schema:
+          type: string
+        name: idComunidad
+        in: path
+        required: true
+    get:
+      summary: Obtener información de la comunidad
+      tags:
+        - comunidad
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comunidad'
+      operationId: getInfoComunidad
+      x-stoplight:
+        id: am4h5fmi2l3k5
+      description: Obtiene la información de la comunidad
+  '/api/comunidades/{idComunidad}/miembros':
+    parameters:
+      - schema:
+          type: string
+        name: idComunidad
+        in: path
+        required: true
+    post:
+      summary: Agregar miembro a comunidad
+      operationId: agregarMiembroComunidad
+      responses:
+        '204':
+          description: No Content
+      x-stoplight:
+        id: vakpw9yp15da6
+      tags:
+        - comunidad
+      description: Agrega a un miembro a una comunidad
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdUsuario'
+  /api/usuarios:
+    post:
+      summary: Crear un nuevo usuario
+      operationId: crearUsuario
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsuarioCreado'
+      x-stoplight:
+        id: uaxx0algp8zzd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreacionUsuario'
+      tags:
+        - usuarios
+      description: Crea un nuevo usuario
+    parameters: []
+components:
+  schemas:
+    Comunidad:
+      type: object
+      x-examples:
+        Example 1:
+          idComunidad: 1
+          nombre: Grupo Java
+          descricion: bla bla..
+          categoria: CBI
+          tipo: privado
+      properties:
+        idComunidad:
+          type: integer
+        nombre:
+          type: string
+        descricion:
+          type: string
+        categoria:
+          type: string
+        tipo:
+          type: string
+      required:
+        - idComunidad
+        - nombre
+        - descricion
+        - categoria
+        - tipo
+    IdUsuario:
+      type: object
+      x-examples:
+        Example 1:
+          idUsuario: 1
+      properties:
+        idUsuario:
+          type: integer
+      required:
+        - idUsuario
+    CreacionUsuario:
+      type: object
+      properties:
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        correo:
+          type: string
+        password:
+          type: string
+      x-examples:
+        Example 1:
+          nombre: Juan
+          apellidos: Pérez
+          correo: usuario@titlani.uam.mx
+          password: '12345'
+      description: Datos necesarios para crear un usuario
+    UsuarioCreado:
+      type: object
+      x-examples:
+        Example 1:
+          id: 1
+          nombre: Juan
+          apellidos: 'Pérez '
+          correo: usuario@titlani.uam.mx
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        correo:
+          type: string
+      required:
+        - id
+        - nombre
+        - apellidos
+        - correo

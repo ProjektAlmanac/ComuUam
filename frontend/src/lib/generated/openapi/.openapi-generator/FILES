@@ -1,0 +1,11 @@
+.openapi-generator-ignore
+apis/ComunidadApi.ts
+apis/UsuariosApi.ts
+apis/index.ts
+index.ts
+models/Comunidad.ts
+models/CreacionUsuario.ts
+models/IdUsuario.ts
+models/UsuarioCreado.ts
+models/index.ts
+runtime.ts
