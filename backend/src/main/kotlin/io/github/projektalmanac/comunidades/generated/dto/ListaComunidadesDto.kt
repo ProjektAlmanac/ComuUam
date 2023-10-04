@@ -22,7 +22,7 @@ data class ListaComunidadesDto(
 
     @field:Valid
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("comunidades", required = true) val comunidades: DetallesComunidadDto
+    @get:JsonProperty("comunidades", required = true) val comunidades: kotlin.collections.List<DetallesComunidadDto>
 ) {
 
 }

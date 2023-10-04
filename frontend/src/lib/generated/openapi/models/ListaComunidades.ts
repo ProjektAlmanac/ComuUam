@@ -28,10 +28,10 @@ import {
 export interface ListaComunidades {
     /**
      * 
-     * @type {DetallesComunidad}
+     * @type {Array<DetallesComunidad>}
      * @memberof ListaComunidades
      */
-    comunidades: DetallesComunidad;
+    comunidades: Array<DetallesComunidad>;
 }
 
 /**
@@ -54,7 +54,7 @@ export function ListaComunidadesFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'comunidades': DetallesComunidadFromJSON(json['comunidades']),
+        'comunidades': ((json['comunidades'] as Array<any>).map(DetallesComunidadFromJSON)),
     };
 }
 
@@ -67,7 +67,7 @@ export function ListaComunidadesToJSON(value?: ListaComunidades | null): any {
     }
     return {
         
-        'comunidades': DetallesComunidadToJSON(value.comunidades),
+        'comunidades': ((value.comunidades as Array<any>).map(DetallesComunidadToJSON)),
     };
 }
 
