@@ -32,6 +32,8 @@ class ConfigSeguridad {
                 .requestMatchers(AntPathRequestMatcher("/api/usuarios/id")).authenticated()
                 .anyRequest().permitAll()
         }
+            .csrf { it.disable() }
+            .headers { it.frameOptions{it.sameOrigin()} }
             .oauth2ResourceServer {
                 it.jwt { customizer ->
                     customizer.jwtAuthenticationConverter(jwtAuthenticationConverter())

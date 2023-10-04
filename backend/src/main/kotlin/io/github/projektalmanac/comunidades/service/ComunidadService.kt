@@ -7,6 +7,9 @@ import io.github.projektalmanac.comunidades.generated.dto.ComunidadDto
 import io.github.projektalmanac.comunidades.generated.dto.IdUsuarioDto
 
 import io.github.projektalmanac.comunidades.generated.dto.ListaComunidadesDto
+
+import io.github.projektalmanac.comunidades.generated.dto.*
+import io.github.projektalmanac.comunidades.mapper.ComunidadMapper
 import io.github.projektalmanac.comunidades.repository.ComunidadRepository
 import io.github.projektalmanac.comunidades.repository.UserRepository
 import org.slf4j.LoggerFactory
@@ -15,7 +18,6 @@ import org.springframework.http.ResponseEntity
 import io.github.projektalmanac.comunidades.entity.User
 import io.github.projektalmanac.comunidades.generated.dto.ComunidadCreadaDto
 import io.github.projektalmanac.comunidades.generated.dto.CreacionComunidadDto
-import io.github.projektalmanac.comunidades.mapper.ComunidadMapper
 
 import org.springframework.stereotype.Service
 import io.github.projektalmanac.comunidades.repository.*
@@ -63,6 +65,30 @@ class ComunidadService(private val comunidadRepository: ComunidadRepository, pri
         //book = bookRepository.findByIsbn(book.getIsbn())
         //return toLibroRegistradoDto(book)
         TODO("Not yet implemented")
+    }
 
+    fun recuperaTodasLasComunidades(): ResponseEntity<ListaComunidadesDto> {
+
+        val comunidadesRecuperadas = comunidadRepository.findAll()
+
+        val listaComunidades: MutableList<DetallesComunidadDto> = mutableListOf()
+
+        for (comunidad in comunidadesRecuperadas) {
+
+            val creadoPorVariable = CreadorComunidadDto (
+                id = comunidad?.dueno?.idUser!!,
+                nombre = comunidad.dueno.name + " " + comunidad.dueno.lastName,
+            )
+
+            val detalleComunidad = DetallesComunidadDto (
+                nombre = comunidad.nombre!!,
+                descripcion = comunidad.descripcion!!,
+                creadoPor = creadoPorVariable,
+            )
+            listaComunidades.add(detalleComunidad)
+        }
+        val listaComunidadesDto = ListaComunidadesDto (comunidades = listaComunidades)
+        LOGGER.info("Recuperando todas las comunidades registradas")
+        return ResponseEntity.ok(listaComunidadesDto)
     }
 }
