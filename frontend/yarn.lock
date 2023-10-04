@@ -648,6 +648,20 @@
     "@material/typography" "^14.0.0"
     tslib "^2.1.0"
 
+"@material/card@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@material/card/-/card-14.0.0.tgz#81a8d201bbfb37cbb4d0b738cb55f23da787c643"
+  integrity sha512-SnpYWUrCb92meGYLXV7qa/k40gnHR6rPki6A1wz0OAyG2twY48f0HLscAqxBLvbbm1LuRaqjz0RLKGH3VzxZHw==
+  dependencies:
+    "@material/dom" "^14.0.0"
+    "@material/elevation" "^14.0.0"
+    "@material/feature-targeting" "^14.0.0"
+    "@material/ripple" "^14.0.0"
+    "@material/rtl" "^14.0.0"
+    "@material/shape" "^14.0.0"
+    "@material/theme" "^14.0.0"
+    tslib "^2.1.0"
+
 "@material/density@^14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@material/density/-/density-14.0.0.tgz#584c4f3468c86c96e361ebe7ba6723f4aa6cd548"
@@ -1004,6 +1018,18 @@
     "@material/shape" "^14.0.0"
     "@material/theme" "^14.0.0"
     "@smui/common" "^7.0.0-beta.15"
+    "@smui/ripple" "^7.0.0-beta.15"
+    svelte2tsx "^0.6.21"
+
+"@smui/card@^7.0.0-beta.15":
+  version "7.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@smui/card/-/card-7.0.0-beta.15.tgz#1dfce49a50593565b6e086c75cad27f6d3196df2"
+  integrity sha512-fGBpgmO3N5kDz5oTFxqIF++ks8/h9I1ef0yD2OgyTYQ5vzYb+N/5NRmjV9g8QitPV2BRYeRLkrOYfn3nnjOCBg==
+  dependencies:
+    "@material/card" "^14.0.0"
+    "@smui/button" "^7.0.0-beta.15"
+    "@smui/common" "^7.0.0-beta.15"
+    "@smui/icon-button" "^7.0.0-beta.15"
     "@smui/ripple" "^7.0.0-beta.15"
     svelte2tsx "^0.6.21"
 
