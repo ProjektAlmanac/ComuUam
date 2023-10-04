@@ -7,13 +7,11 @@ import io.github.projektalmanac.comunidades.generated.dto.ComunidadDto
 import io.github.projektalmanac.comunidades.generated.dto.IdUsuarioDto
 
 import io.github.projektalmanac.comunidades.generated.dto.ListaComunidadesDto
-import io.github.projektalmanac.comunidades.mapper.ComunidadMapper
 import io.github.projektalmanac.comunidades.repository.ComunidadRepository
 import io.github.projektalmanac.comunidades.repository.UserRepository
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 
-import io.github.projektalmanac.comunidades.entity.Comunidad
 import io.github.projektalmanac.comunidades.entity.User
 import io.github.projektalmanac.comunidades.generated.dto.ComunidadCreadaDto
 import io.github.projektalmanac.comunidades.generated.dto.CreacionComunidadDto
@@ -55,8 +53,6 @@ class ComunidadService(private val comunidadRepository: ComunidadRepository, pri
     companion object {
         private val LOGGER = LoggerFactory.getLogger(ComunidadService::class.java)
     }
-    @Autowired
-    private val userRepository: UserRepository? = null
     fun crearComunidad(creacionComunidadDto: CreacionComunidadDto?): ComunidadCreadaDto {
         //val user: User = userRepository.findById(id)
         val comunidad: Comunidad? = creacionComunidadDto?.let { ComunidadMapper.INSTANCE.toComunidad(it) }
