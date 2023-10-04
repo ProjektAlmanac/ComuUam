@@ -722,6 +722,13 @@
     "@material/touch-target" "^14.0.0"
     tslib "^2.1.0"
 
+"@material/layout-grid@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@material/layout-grid/-/layout-grid-14.0.0.tgz#d70569dfd7d372f0c72d30b8b87f3965a3c6bc72"
+  integrity sha512-tAce0PR/c85VI2gf1HUdM0Y15ZWpfZWAFIwaCRW1+jnOLWnG1/aOJYLlzqtVEv2m0TS1R1WRRGN3Or+CWvpDRA==
+  dependencies:
+    tslib "^2.1.0"
+
 "@material/line-ripple@^14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@material/line-ripple/-/line-ripple-14.0.0.tgz#460e972dd99d119b97d3ee4b7a73bc1d199abfad"
@@ -1026,6 +1033,15 @@
     "@material/icon-button" "^14.0.0"
     "@smui/common" "^7.0.0-beta.15"
     "@smui/ripple" "^7.0.0-beta.15"
+    svelte2tsx "^0.6.21"
+
+"@smui/layout-grid@^7.0.0-beta.15":
+  version "7.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@smui/layout-grid/-/layout-grid-7.0.0-beta.15.tgz#bf0cf80639766a5611eedf11208cd050f7f90b6b"
+  integrity sha512-E7zfbccpnC8PRSNyZfPEJd+ZCaROjZOGoB8h5Wz7by+9TIJr45nPugRA76d28M6Zv+Aqv/Pulza1NM0PTJI97A==
+  dependencies:
+    "@material/layout-grid" "^14.0.0"
+    "@smui/common" "^7.0.0-beta.15"
     svelte2tsx "^0.6.21"
 
 "@smui/line-ripple@^7.0.0-beta.15":
