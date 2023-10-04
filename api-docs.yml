@@ -10,8 +10,13 @@ info:
   title: Comuam
   version: '1.0'
   contact:
+    name: Proyect Almanac
     email: miguel.gzm98@gmail.com
+    url: https://ProjektAlmanac.github.io
   description: Correo de contacto del API
+  license:
+    name: MIT
+    url: https://proyektalmanac.github.io/license
 servers:
   - url: 'http://localhost:3000'
 paths:
@@ -22,6 +27,7 @@ paths:
         name: idComunidad
         in: path
         required: true
+        description: ID de la comunidad
     get:
       summary: Obtener información de la comunidad
       tags:
@@ -44,6 +50,7 @@ paths:
         name: idComunidad
         in: path
         required: true
+        description: ID de la comunidad
     post:
       summary: Agregar miembro a comunidad
       operationId: agregarMiembroComunidad
@@ -82,8 +89,128 @@ paths:
         - usuarios
       description: Crea un nuevo usuario
     parameters: []
+  /api/comunidades:
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListaComunidades'
+      operationId: getComunidades
+      x-stoplight:
+        id: b70fpvufymzr1
+      description: Recupera una lista con todas las comunidades que se han registrado
+      tags:
+        - comunidad
 components:
   schemas:
+    IdUsuario:
+      type: object
+      x-examples:
+        Example 1:
+          idUsuario: 1
+      properties:
+        idUsuario:
+          type: integer
+      required:
+        - idUsuario
+    CreacionUsuario:
+      type: object
+      x-examples:
+        Example 1:
+          nombre: Juan
+          apellidos: Pérez
+          correo: usuario@titlani.uam.mx
+          password: '12345'
+      description: Datos necesarios para crear un usuario
+      properties:
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        correo:
+          type: string
+        password:
+          type: string
+      required:
+        - nombre
+        - apellidos
+        - correo
+        - password
+    UsuarioCreado:
+      type: object
+      x-examples:
+        Example 1:
+          id: 1
+          nombre: Juan
+          apellidos: 'Pérez '
+          correo: usuario@titlani.uam.mx
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+        apellidos:
+          type: string
+        correo:
+          type: string
+      required:
+        - id
+        - nombre
+        - apellidos
+        - correo
+    CreadorComunidad:
+      type: object
+      x-examples:
+        Example 1:
+          id: 1
+          nombre: Miguel Guzman
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+      required:
+        - id
+        - nombre
+    DetallesComunidad:
+      type: object
+      x-examples:
+        Example 1:
+          nombre: Comunidad Java
+          creadoPor:
+            id: 1
+            nombre: Miguel Guzman
+          descripcion: Ven y aprende
+      properties:
+        nombre:
+          type: string
+        creadoPor:
+          $ref: '#/components/schemas/CreadorComunidad'
+        descripcion:
+          type: string
+      required:
+        - nombre
+        - creadoPor
+        - descripcion
+    ListaComunidades:
+      type: object
+      x-examples:
+        Example 1:
+          comunidades:
+            - nombre: Comunidad Java
+              creadoPor:
+                id: 1
+                nombre: Miguel Guzman
+              descripcion: Ven y aprende
+      properties:
+        comunidades:
+          $ref: '#/components/schemas/DetallesComunidad'
+      required:
+        - comunidades
     Comunidad:
       type: object
       x-examples:
@@ -110,53 +237,3 @@ components:
         - descricion
         - categoria
         - tipo
-    IdUsuario:
-      type: object
-      x-examples:
-        Example 1:
-          idUsuario: 1
-      properties:
-        idUsuario:
-          type: integer
-      required:
-        - idUsuario
-    CreacionUsuario:
-      type: object
-      properties:
-        nombre:
-          type: string
-        apellidos:
-          type: string
-        correo:
-          type: string
-        password:
-          type: string
-      x-examples:
-        Example 1:
-          nombre: Juan
-          apellidos: Pérez
-          correo: usuario@titlani.uam.mx
-          password: '12345'
-      description: Datos necesarios para crear un usuario
-    UsuarioCreado:
-      type: object
-      x-examples:
-        Example 1:
-          id: 1
-          nombre: Juan
-          apellidos: 'Pérez '
-          correo: usuario@titlani.uam.mx
-      properties:
-        id:
-          type: integer
-        nombre:
-          type: string
-        apellidos:
-          type: string
-        correo:
-          type: string
-      required:
-        - id
-        - nombre
-        - apellidos
-        - correo
