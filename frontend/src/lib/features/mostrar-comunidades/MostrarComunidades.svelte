@@ -21,7 +21,7 @@
 <hr />
 
 <div class="boton">
-	<a href="/crear-comunidad">
+	<a href="/comunidades/crear">
 		<Button color="secondary" on:click={() => clicked++} variant="raised">
 			<Label>Crear nueva comunidad</Label>
 		</Button>

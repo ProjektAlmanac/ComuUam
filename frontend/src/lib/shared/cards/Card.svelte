@@ -35,7 +35,7 @@
 			</PrimaryAction>
 			<Actions>
 				<ActionButtons>
-					<a href="/join?id={comunidad.id}">
+					<a href="/comunidades/join?id={comunidad.id}">
 						<Button on:click={() => clicked++}>
 							<Label>Inscribirme</Label>
 						</Button>
