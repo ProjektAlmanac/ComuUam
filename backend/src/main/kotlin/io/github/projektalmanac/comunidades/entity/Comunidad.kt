@@ -4,14 +4,19 @@ import jakarta.persistence.*
 
 @Entity
 class Comunidad {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int? = null
     val nombre: String? = null
-    val descripccion: String? = null
-    val categoria: String? = null
-    val tipo: String? = null
+    val descripcion: String? = null
 
+    @ManyToOne
+    val dueno: User? = null
+
+    val visibilidad: String? = null
+    val categoria: String? = null
+    
     @ManyToMany
     @JoinTable(
         name = "Usuarios",
@@ -19,4 +24,5 @@ class Comunidad {
         inverseJoinColumns = [JoinColumn(name = "comunidad_id")]
     )
     val users: List<User> = ArrayList()
+
 }

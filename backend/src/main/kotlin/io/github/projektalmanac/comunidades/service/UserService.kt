@@ -33,9 +33,7 @@ class UserService (private val userRepository: UserRepository, private val comun
             usuarioEncontrado
         }
 
-        if (usuario != null) {
-            comunidad.users.add(usuario.get())
-        };
+
 
     }
 
