@@ -12,7 +12,7 @@ class User {
     val lastName: String? = null
     val correo: String? = null
 
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany(mappedBy = "usuariosInscritos")
     val comunidad: List<Comunidad> = ArrayList()
 
     @OneToMany

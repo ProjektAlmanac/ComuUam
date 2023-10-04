@@ -37,7 +37,7 @@ class ComunidadService(private val comunidadRepository: ComunidadRepository, pri
         LOGGER.info(">> agregaMiembroComunidad {}", idComunidad)
         val idComunidadInt: Int? = (idComunidad as? Int)?.toInt() ?: throw IllegalArgumentException("Error, parceo incorrecto")
         val comunidad = comunidadRepository.findComunidadById(idComunidadInt) ?: throw CommunityNotFoundException(idComunidadInt!!)
-        val usuario = usuarioDto?.idUsuario?.let { userRepository.findUserById(it) }
+        val usuario = usuarioDto?.idUsuario?.let { userRepository.findUserByIdUser(it) }
 
         if (usuario == null) if (usuarioDto != null) {
             throw UserNotFoundException(usuarioDto.idUsuario)
