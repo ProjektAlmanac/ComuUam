@@ -2,6 +2,7 @@ package io.github.projektalmanac.comunidades.mapper
 
 import io.github.projektalmanac.comunidades.entity.Comunidad
 import io.github.projektalmanac.comunidades.generated.dto.ComunidadDto
+import io.github.projektalmanac.comunidades.generated.dto.CreacionComunidadDto
 import org.mapstruct.Mapper
 import org.mapstruct.factory.Mappers
 
@@ -12,4 +13,6 @@ interface ComunidadMapper {
     }
 
     fun comunidadToDto(comunidad: Comunidad): ComunidadDto
+
+    fun toComunidad(creacionComunidadDto: CreacionComunidadDto): Comunidad
 }
