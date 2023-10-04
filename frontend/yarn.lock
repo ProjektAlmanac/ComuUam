@@ -1163,6 +1163,18 @@
     "@smui/common" "^7.0.0-beta.15"
     svelte2tsx "^0.6.21"
 
+"@smui/list@^7.0.0-beta.15":
+  version "7.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@smui/list/-/list-7.0.0-beta.15.tgz#bf592b2efdb209f0f8956676ff1cee785017226b"
+  integrity sha512-5NeAgVLjcaJo0Mr4IXB1QaAb3UGBtNWJqHNwVXfPpADIb3vKLNGpKrXv5koKqCLGEapkEjQ2PqixURaB/5O2eg==
+  dependencies:
+    "@material/dom" "^14.0.0"
+    "@material/feature-targeting" "^14.0.0"
+    "@material/list" "^14.0.0"
+    "@smui/common" "^7.0.0-beta.15"
+    "@smui/ripple" "^7.0.0-beta.15"
+    svelte2tsx "^0.6.21"
+
 "@smui/notched-outline@^7.0.0-beta.15":
   version "7.0.0-beta.15"
   resolved "https://registry.yarnpkg.com/@smui/notched-outline/-/notched-outline-7.0.0-beta.15.tgz#2b95211448c24938304d6360c66baa4ea8cf4962"
