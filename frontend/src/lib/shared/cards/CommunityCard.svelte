@@ -10,6 +10,7 @@
 	} from '@smui/card';
 	import Button, { Label } from '@smui/button';
 	import type { DetallesComunidad } from '$lib/generated/openapi';
+	import { goto } from '$app/navigation';
 
 	export let comunidad: DetallesComunidad;
 
@@ -19,7 +20,11 @@
 <div class="card-display">
 	<div class="card-container">
 		<Card>
-			<PrimaryAction>
+			<PrimaryAction
+				on:click={() => goto(`/comunidad?id=${comunidad.id}`)}
+				data-href="/comunidad?id={comunidad.id}"
+				role="link"
+			>
 				<img
 					src="https://yt3.googleusercontent.com/2tjUUCtSdXwQthDFK4gPuKd1kbYAKgUH8A003UnShfJbzo4BQKl3weBIsCSJuWI0pHy75bpN=s900-c-k-c0x00ffffff-no-rj"
 					width="300"
