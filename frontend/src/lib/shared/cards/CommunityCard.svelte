@@ -30,7 +30,7 @@
 					<h3 class="mdc-typography--subtitle2" style="margin: 0 0 10px; color: #888;">
 						Creado por: {comunidad.creadoPor.nombre}
 					</h3>
-					Descripcion: {comunidad.descripcion}
+					Descripcion: {comunidad.descripcionCorta}
 				</Content>
 			</PrimaryAction>
 			<Actions>

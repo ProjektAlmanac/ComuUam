@@ -16,6 +16,7 @@ class Comunidad {
 
     var visibilidad: String? = null
     var categoria: String? = null
+    var descripcionCorta: String? = null
     
     @ManyToMany(cascade = [CascadeType.ALL])
     @JoinTable(

@@ -10,6 +10,7 @@
 
 	let nombre = '';
 	let visibilidad: Visibilidad = 'Publico';
+	let descripcionCorta = '';
 	let descripcion = '';
 
 	const { comunidadApi } = services;
@@ -21,7 +22,8 @@
 					categorias: [],
 					descripcion,
 					nombre,
-					visibilidad
+					visibilidad,
+					descripcionCorta
 				}
 			},
 			{ credentials: 'include' }
@@ -43,6 +45,16 @@
 					variant="filled"
 					bind:value={nombre}
 					label="Nombre"
+				/>
+			</Cell>
+
+			<Cell span={12}>
+				<Textfield
+					class="input-descripcion-corta"
+					required
+					variant="filled"
+					bind:value={descripcionCorta}
+					label="Descripción corta"
 				/>
 			</Cell>
 
@@ -77,7 +89,7 @@
 </div>
 
 <style lang="sass">
-    .crear-comunidad :global(.input-nombre)
+    .crear-comunidad :global(.input-nombre), :global(.input-descripcion-corta)
         width: 300px
     
     .button-container

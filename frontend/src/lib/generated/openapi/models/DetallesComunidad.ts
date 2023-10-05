@@ -50,6 +50,12 @@ export interface DetallesComunidad {
      * @memberof DetallesComunidad
      */
     id: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DetallesComunidad
+     */
+    descripcionCorta: string;
 }
 
 /**
@@ -61,6 +67,7 @@ export function instanceOfDetallesComunidad(value: object): boolean {
     isInstance = isInstance && "creadoPor" in value;
     isInstance = isInstance && "descripcion" in value;
     isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "descripcionCorta" in value;
 
     return isInstance;
 }
@@ -79,6 +86,7 @@ export function DetallesComunidadFromJSONTyped(json: any, ignoreDiscriminator: b
         'creadoPor': CreadorComunidadFromJSON(json['creadoPor']),
         'descripcion': json['descripcion'],
         'id': json['id'],
+        'descripcionCorta': json['descripcionCorta'],
     };
 }
 
@@ -95,6 +103,7 @@ export function DetallesComunidadToJSON(value?: DetallesComunidad | null): any {
         'creadoPor': CreadorComunidadToJSON(value.creadoPor),
         'descripcion': value.descripcion,
         'id': value.id,
+        'descripcionCorta': value.descripcionCorta,
     };
 }
 

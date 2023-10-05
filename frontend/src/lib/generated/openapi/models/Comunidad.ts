@@ -49,6 +49,12 @@ export interface Comunidad {
      * @memberof Comunidad
      */
     tipo: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Comunidad
+     */
+    descripcionCorta: string;
 }
 
 /**
@@ -61,6 +67,7 @@ export function instanceOfComunidad(value: object): boolean {
     isInstance = isInstance && "descricion" in value;
     isInstance = isInstance && "categoria" in value;
     isInstance = isInstance && "tipo" in value;
+    isInstance = isInstance && "descripcionCorta" in value;
 
     return isInstance;
 }
@@ -80,6 +87,7 @@ export function ComunidadFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'descricion': json['descricion'],
         'categoria': json['categoria'],
         'tipo': json['tipo'],
+        'descripcionCorta': json['descripcionCorta'],
     };
 }
 
@@ -97,6 +105,7 @@ export function ComunidadToJSON(value?: Comunidad | null): any {
         'descricion': value.descricion,
         'categoria': value.categoria,
         'tipo': value.tipo,
+        'descripcionCorta': value.descripcionCorta,
     };
 }
 

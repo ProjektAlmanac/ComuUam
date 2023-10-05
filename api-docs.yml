@@ -256,11 +256,16 @@ components:
           type: integer
           x-stoplight:
             id: k7ec5of6qv0p1
+        descripcionCorta:
+          type: string
+          x-stoplight:
+            id: 82vfv9aprm3do
       required:
         - nombre
         - creadoPor
         - descripcion
         - id
+        - descripcionCorta
     ListaComunidades:
       type: object
       x-examples:
@@ -300,12 +305,17 @@ components:
           type: string
         tipo:
           type: string
+        descripcionCorta:
+          type: string
+          x-stoplight:
+            id: dj29zprvhors0
       required:
         - idComunidad
         - nombre
         - descricion
         - categoria
         - tipo
+        - descripcionCorta
     CreacionComunidad:
       type: object
       x-examples:
@@ -330,6 +340,10 @@ components:
           type: string
           x-stoplight:
             id: 2cvty9lkj5hbd
+        descripcionCorta:
+          type: string
+          x-stoplight:
+            id: unjkh6x2viwcq
       required:
         - visibilidad
         - descripcion
@@ -370,12 +384,17 @@ components:
           type: string
           x-stoplight:
             id: v9qmgqh5iq0de
+        descripcionCorta:
+          type: string
+          x-stoplight:
+            id: 7r2rm8rdmo51l
       required:
         - id
         - visibilidad
         - descripcion
         - categorias
         - nombre
+        - descripcionCorta
   securitySchemes:
     jwt:
       type: http

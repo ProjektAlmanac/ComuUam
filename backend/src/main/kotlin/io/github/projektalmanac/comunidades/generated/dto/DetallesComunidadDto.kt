@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param creadoPor 
  * @param descripcion 
  * @param id 
+ * @param descripcionCorta 
  */
 data class DetallesComunidadDto(
 
@@ -34,7 +35,10 @@ data class DetallesComunidadDto(
     @get:JsonProperty("descripcion", required = true) val descripcion: kotlin.String,
 
     @Schema(example = "null", required = true, description = "")
-    @get:JsonProperty("id", required = true) val id: kotlin.Int
+    @get:JsonProperty("id", required = true) val id: kotlin.Int,
+
+    @Schema(example = "null", required = true, description = "")
+    @get:JsonProperty("descripcionCorta", required = true) val descripcionCorta: kotlin.String
 ) {
 
 }

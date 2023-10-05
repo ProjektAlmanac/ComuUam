@@ -33,17 +33,35 @@ class ComunidadesApplication (private val userRepository: UserRepository, privat
 
 		val comunidad = Comunidad()
 		comunidad.nombre = "Comunidad de prueba"
-		comunidad.descripcion = "Comunidad de prueba"
 		comunidad.dueno = user
 		comunidad.visibilidad = "publica"
 		comunidad.categoria = "prueba"
+		comunidad.descripcionCorta = "Comunidad de prueba"
+		comunidad.descripcion = """
+			# Bienvenid@ a la comunidad de prueba!
+			
+			Aquí podrás realizar diversas actividades, tales como
+			
+			- Actividad 1
+			- Actividad 2
+			- Actividad 3
+		""".trimIndent()
 
 		val comunidad2 = Comunidad()
 		comunidad2.nombre = "Comunidad de prueba 2"
-		comunidad2.descripcion = "Comunidad de prueba 2"
 		comunidad2.dueno = user
 		comunidad2.visibilidad = "publica"
 		comunidad2.categoria = "prueba 2"
+		comunidad2.descripcionCorta = "Comunidad de prueba 2"
+		comunidad2.descripcion = """
+			# Bienvenid@ a la comunidad de prueba 2!
+			
+			Aquí podrás realizar diversas actividades, tales como
+			
+			- Actividad 1
+			- Actividad 2
+			- Actividad 3
+		""".trimIndent()
 
 		user.dueno.add(comunidad)
 		user.dueno.add(comunidad2)

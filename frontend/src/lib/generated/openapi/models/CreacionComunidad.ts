@@ -50,6 +50,12 @@ export interface CreacionComunidad {
      * @memberof CreacionComunidad
      */
     nombre: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreacionComunidad
+     */
+    descripcionCorta?: string;
 }
 
 /**
@@ -79,6 +85,7 @@ export function CreacionComunidadFromJSONTyped(json: any, ignoreDiscriminator: b
         'descripcion': json['descripcion'],
         'categorias': json['categorias'],
         'nombre': json['nombre'],
+        'descripcionCorta': !exists(json, 'descripcionCorta') ? undefined : json['descripcionCorta'],
     };
 }
 
@@ -95,6 +102,7 @@ export function CreacionComunidadToJSON(value?: CreacionComunidad | null): any {
         'descripcion': value.descripcion,
         'categorias': value.categorias,
         'nombre': value.nombre,
+        'descripcionCorta': value.descripcionCorta,
     };
 }
 
