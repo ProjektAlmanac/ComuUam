@@ -7,6 +7,7 @@
 	import services from '$lib/services';
 	import { Visibilidad } from '$lib/generated/openapi';
 	import { firebaseUser } from '$lib/store';
+	import { goto } from '$app/navigation';
 
 	let nombre = '';
 	let visibilidad: Visibilidad = 'Publico';
@@ -15,8 +16,8 @@
 
 	const { comunidadApi } = services;
 
-	function crearComunidad() {
-		comunidadApi.crearComunidad(
+	async function crearComunidad() {
+		await comunidadApi.crearComunidad(
 			{
 				creacionComunidad: {
 					categorias: [],
@@ -28,6 +29,7 @@
 			},
 			{ credentials: 'include' }
 		);
+		goto('/');
 	}
 </script>
 
