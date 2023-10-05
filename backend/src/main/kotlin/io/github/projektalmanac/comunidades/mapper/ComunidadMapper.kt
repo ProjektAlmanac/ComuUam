@@ -11,6 +11,7 @@ abstract class ComunidadMapper {
     @Mapping(source = "descripcion", target = "descricion" )
     @Mapping(source = "visibilidad", target = "tipo" )
     @Mapping(source = "id", target = "idComunidad")
+    @Mapping(target = "categoria", defaultValue = "")
     abstract fun comunidadToDto(comunidad: Comunidad): ComunidadDto
 
     abstract fun toComunidad(creacionComunidadDto: CreacionComunidadDto): Comunidad
