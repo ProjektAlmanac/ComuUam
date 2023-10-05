@@ -4,6 +4,8 @@
 	import TextField from '@smui/textfield';
 	import Button from '@smui/button';
 	import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+	import services from '$lib/services';
+	import { goto } from '$app/navigation';
 
 	let name = '';
 	let surname = '';
@@ -13,6 +15,8 @@
 
 	let errorMessage: string | undefined = undefined;
 
+	const { usuariosApi } = services;
+
 	async function submit() {
 		if (confirmPassword !== password) {
 			errorMessage = 'Las contraseñas no coinciden';
@@ -20,7 +24,16 @@
 		}
 
 		const auth = getAuth();
-		createUserWithEmailAndPassword(auth, email, password);
+		await usuariosApi.crearUsuario({
+			creacionUsuario: {
+				apellidos: surname,
+				correo: email,
+				nombre: name,
+				password
+			}
+		});
+		await createUserWithEmailAndPassword(auth, email, password);
+		goto('/');
 	}
 </script>
 
