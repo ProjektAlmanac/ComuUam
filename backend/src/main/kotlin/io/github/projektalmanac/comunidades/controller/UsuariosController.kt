@@ -23,17 +23,9 @@ class UsuariosController(private val userService: UserService): UsuariosApi {
         return ResponseEntity.ok(comunidades)
     }
 
-    override fun getId(): ResponseEntity<IdUsuarioDto> {
+    override fun getMe(): ResponseEntity<UsuarioCreadoDto> {
         val authentication = SecurityContextHolder.getContext().authentication
-        val user = userService.getUser(authentication)
-        val id =
-            if (user === null) {
-                val createdUser = userService.crearUsuario(authentication)
-                createdUser.idUser!!
-            }
-            else
-                user.idUser!!
-
-        return ResponseEntity.ok(IdUsuarioDto(id))
+        val user = userService.getUser(authentication) ?: userService.crearUsuario(authentication)
+        return ResponseEntity.ok(user)
     }
 }

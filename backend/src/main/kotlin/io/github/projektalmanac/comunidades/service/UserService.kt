@@ -20,16 +20,21 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class UserService (private val userRepository: UserRepository, private val comunidadRepository: ComunidadRepository, private val comunidadMapper: ComunidadMapper) {
+class UserService (
+    private val userRepository: UserRepository,
+    private val comunidadRepository: ComunidadRepository,
+    private val comunidadMapper: ComunidadMapper,
+    private val userMapper: UserMapper) {
 
 
     fun agregaMiembroComunidad(idComunidad: Int?, usuarioDto: IdUsuarioDto?) {}
 
-    fun getUser(authentication: Authentication): User? {
+    fun getUser(authentication: Authentication): UsuarioCreadoDto? {
         val principal = authentication.principal
         require(principal is Jwt)
         val email = principal.claims["email"] as String
-        return userRepository.findByCorreo(email)
+        val usuario = userRepository.findByCorreo(email)
+        return usuario?.let { userMapper.toDto(usuario) }
     }
 
     fun crearUsuario(creacionUsuarioDto: CreacionUsuarioDto): UsuarioCreadoDto {
@@ -44,7 +49,7 @@ class UserService (private val userRepository: UserRepository, private val comun
         return UserMapper.INSTANCE.toDto(userEntity)
     }
 
-    fun crearUsuario(authentication: Authentication): User {
+    fun crearUsuario(authentication: Authentication): UsuarioCreadoDto {
         val principal = authentication.principal
         require(principal is Jwt)
         val email = principal.claims["email"] as String
@@ -57,7 +62,7 @@ class UserService (private val userRepository: UserRepository, private val comun
         user.correo = email
         user = userRepository.save(user)
         LOGGER.info("Usuario creado con id ${user.idUser}")
-        return user
+        return userMapper.toDto(user)
     }
 
     fun getComunidadesUsuario(id: Int): ListaComunidadesDto {

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 
-import { currentUser } from '$lib/store';
+import { firebaseUser } from '$lib/store';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
@@ -33,6 +33,6 @@ export function inicializarFirebase() {
 
 	const auth = getAuth();
 	auth.onAuthStateChanged((user) => {
-		currentUser.set(user);
+		firebaseUser.set(user);
 	});
 }

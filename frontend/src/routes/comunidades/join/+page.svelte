@@ -6,7 +6,7 @@
 	import services from '$lib/services';
 	import Button from '@smui/button';
 	import Card from '@smui/card';
-	import { currentUserId } from '$lib/store';
+	import { currentUser } from '$lib/store';
 	import { goto } from '$app/navigation';
 
 	export let data: PageData;
@@ -25,7 +25,7 @@
 		await comunidadApi.agregarMiembroComunidad({
 			idComunidad,
 			idUsuario: {
-				idUsuario: $currentUserId!
+				idUsuario: $currentUser?.id!
 			}
 		});
 		goto(`/comunidades?id=${data.communityId}`);

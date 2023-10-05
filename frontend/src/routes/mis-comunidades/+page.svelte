@@ -1,14 +1,14 @@
 <script lang="ts">
 	import type { DetallesComunidad } from '$lib/generated/openapi';
 	import services from '$lib/services';
-	import { currentUserId } from '$lib/store';
+	import { currentUser } from '$lib/store';
 	import CommunityCard from '$lib/shared/cards/CommunityCard.svelte';
 
 	const { usuariosApi } = services;
 
 	let comunidadesPromise: Promise<DetallesComunidad[]> | undefined;
 
-	$: comunidadesPromise = $currentUserId ? fetchComunidades($currentUserId) : undefined;
+	$: comunidadesPromise = $currentUser?.id ? fetchComunidades($currentUser.id) : undefined;
 
 	async function fetchComunidades(idUsuario: number) {
 		const { comunidades } = await usuariosApi.getComunidadesUsuario({ id: idUsuario });

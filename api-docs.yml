@@ -126,7 +126,7 @@ paths:
         description: Datos para la creación de una comunidad
       tags:
         - comunidad
-  /api/usuarios/id:
+  /api/usuarios/me:
     get:
       summary: Recuperar ID
       tags:
@@ -137,8 +137,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/IdUsuario"
-      operationId: getId
+                $ref: "#/components/schemas/UsuarioCreado"
+      operationId: getMe
       x-stoplight:
         id: 9985n1ey6vdqv
       description: Recupera el ID del usuario basado en la información de su JWT

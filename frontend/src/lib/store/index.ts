@@ -1,18 +1,18 @@
-import type { Comunidad } from '$lib/generated/openapi';
+import type { Comunidad, UsuarioCreado } from '$lib/generated/openapi';
 import services from '$lib/services';
 import type { User } from '@firebase/auth';
 import { writable } from 'svelte/store';
 
-export const currentUser = writable<User | null | undefined>(undefined);
+export const firebaseUser = writable<User | null | undefined>(undefined);
 
-currentUser.subscribe(async (user) => {
+firebaseUser.subscribe(async (user) => {
 	if (!user) return;
 	const { usuariosApi } = services;
-	const response = await usuariosApi.getId();
-	currentUserId.set(response.idUsuario);
+	const response = await usuariosApi.getMe();
+	currentUser.set(response);
 });
 
-export const currentUserId = writable<number | null>(null);
+export const currentUser = writable<UsuarioCreado | null>(null);
 
 export const currentCommunityId = writable<number | null>(null);
 

@@ -6,7 +6,7 @@
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
 	import services from '$lib/services';
 	import { Visibilidad } from '$lib/generated/openapi';
-	import { currentUser } from '$lib/store';
+	import { firebaseUser } from '$lib/store';
 
 	let nombre = '';
 	let visibilidad: Visibilidad = 'Publico';
