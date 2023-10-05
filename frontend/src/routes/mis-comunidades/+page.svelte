@@ -3,6 +3,7 @@
 	import services from '$lib/services';
 	import { currentUser } from '$lib/store';
 	import CommunityCard from '$lib/shared/cards/CommunityCard.svelte';
+	import LayoutGrid, { Cell } from '@smui/layout-grid';
 
 	const { usuariosApi } = services;
 
@@ -20,8 +21,12 @@
 	{#await comunidadesPromise}
 		<p>Loading...</p>
 	{:then comunidades}
-		{#each comunidades as comunidad}
-			<CommunityCard {comunidad} inscrito />
-		{/each}
+		<LayoutGrid>
+			{#each comunidades as comunidad}
+				<Cell span={3}>
+					<CommunityCard {comunidad} inscrito />
+				</Cell>
+			{/each}
+		</LayoutGrid>
 	{/await}
 {/if}
