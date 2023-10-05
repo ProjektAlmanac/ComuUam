@@ -3,6 +3,9 @@
 	import IconButton from '@smui/icon-button';
 	import Drawer from './Drawer.svelte';
 	import { Scrim, AppContent } from '@smui/drawer';
+	import Button from '@smui/button';
+	import { currentUser, firebaseUser } from '$lib/store';
+	import { getAuth, signOut } from 'firebase/auth';
 
 	let topAppBar: TopAppBar;
 
@@ -11,6 +14,13 @@
 	function openDrawer() {
 		open = true;
 	}
+
+	async function logout() {
+		const auth = getAuth();
+		await signOut(auth);
+	}
+
+	$: console.log($firebaseUser);
 </script>
 
 <Drawer bind:open />
@@ -22,6 +32,15 @@
 			<Section>
 				<IconButton on:click={openDrawer} class="material-icons">menu</IconButton>
 				<Title>ComUAM</Title>
+			</Section>
+			<Section align="end">
+				{#if $firebaseUser}
+					<Button color="secondary" variant="raised" on:click={logout}>Cerrar sesión</Button>
+				{:else}
+					<a href="/login">
+						<Button color="secondary" variant="raised">Iniciar sesión</Button>
+					</a>
+				{/if}
 			</Section>
 		</Row>
 	</TopAppBar>
