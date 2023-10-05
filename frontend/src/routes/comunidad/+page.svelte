@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { currentCommunity } from '$lib/store';
 	import { marked } from 'marked';
-	import Card from '@smui/card';
+	import Paper from '@smui/paper';
 
 	$: description = marked($currentCommunity?.descricion ?? '');
 </script>
 
 <div class="comunidad-home">
-	<Card class="description">
+	<Paper class="description">
 		{@html description}
-	</Card>
+	</Paper>
 </div>
 
 <style lang="sass">

@@ -39,10 +39,19 @@
 	}
 </script>
 
-<TabBar {tabs} let:tab bind:active {key}>
-	<Tab {tab} on:click={() => navigate(tab)}>
-		<Label>{tab.label}</Label>
-	</Tab>
-</TabBar>
+<div class="tab-container">
+	<TabBar {tabs} let:tab bind:active {key}>
+		<Tab {tab} on:click={() => navigate(tab)}>
+			<Label>{tab.label}</Label>
+		</Tab>
+	</TabBar>
 
-<slot />
+	<slot />
+</div>
+
+<style lang="sass">
+    .tab-container
+        height: 100%
+        display: grid
+        grid-template-rows: auto 1fr
+</style>

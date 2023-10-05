@@ -16,8 +16,8 @@
 <Drawer bind:open />
 
 <Scrim />
-<AppContent>
-	<TopAppBar bind:this={topAppBar} variant="standard">
+<AppContent style="height: 100%">
+	<TopAppBar bind:this={topAppBar} variant="fixed">
 		<Row>
 			<Section>
 				<IconButton on:click={openDrawer} class="material-icons">menu</IconButton>
@@ -25,10 +25,9 @@
 			</Section>
 		</Row>
 	</TopAppBar>
-	<AutoAdjust {topAppBar} />
-	<main>
+	<AutoAdjust {topAppBar} style="height: 100%">
 		<slot />
-	</main>
+	</AutoAdjust>
 </AppContent>
 
 <style>
