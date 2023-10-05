@@ -28,7 +28,7 @@
 				idUsuario: $currentUser?.id!
 			}
 		});
-		goto(`/comunidades?id=${data.communityId}`);
+		goto(`/comunidad?id=${data.communityId}`);
 	}
 </script>
 
