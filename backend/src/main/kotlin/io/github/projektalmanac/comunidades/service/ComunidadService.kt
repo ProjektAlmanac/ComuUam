@@ -86,7 +86,7 @@ class ComunidadService(
                 descripcion = comunidad.descripcion!!,
                 creadoPor = creadoPorVariable,
                 id = comunidad.id ?: 0,
-                descripcionCorta = comunidad.descripcionCorta!!,
+                descripcionCorta = comunidad.descripcionCorta ?: "",
             )
             listaComunidades.add(detalleComunidad)
         }

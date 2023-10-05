@@ -4,6 +4,7 @@
 	import TextField from '@smui/textfield';
 	import Button from '@smui/button';
 	import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+	import { goto } from '$app/navigation';
 
 	let name = '';
 	let surname = '';
@@ -20,7 +21,8 @@
 		}
 
 		const auth = getAuth();
-		createUserWithEmailAndPassword(auth, email, password);
+		await createUserWithEmailAndPassword(auth, email, password);
+		goto('/');
 	}
 </script>
 

@@ -1,13 +1,13 @@
 spring:
-
   datasource:
-    url: jdbc:h2:mem:comu-uam
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/comuuam
+    username: root
+    password: uam123
   jpa:
-    database: h2
-    database-platform: org.hibernate.dialect.H2Dialect
-    generate-ddl: true
+    hibernate:
+      ddl-auto: update
     show-sql: false
+    database-platform: org.hibernate.dialect.MySQLDialect
   h2:
     console:
       enabled: true

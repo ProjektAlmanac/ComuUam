@@ -62,6 +62,9 @@ dependencies {
     }
     implementation("javax.servlet:javax.servlet-api:3.1.0")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server:3.0.4")
+
+    implementation("org.springframework.boot:spring-boot-starter-data-rest")
+    runtimeOnly("mysql:mysql-connector-java:8.0.33")
 }
 
 tasks.withType<KotlinCompile> {
